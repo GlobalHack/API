@@ -4,24 +4,50 @@
     <title>Cemaritan API</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/swagger-ui.css">
     <!--STYLES END-->
+
+    <!-- Auth0 lock script -->
+    <script src="https://cdn.auth0.com/js/lock/10.8/lock.min.js"></script>
+
   </head>
 
   <body>
+
+    <button type="submit" id="btn-login">Sign In</button>
+
     <%- body %>
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/swagger-ui-bundle.js"></script>
     <script src="/js/dependencies/swagger-ui-standalone-preset.js"></script>
     <!--SCRIPTS END-->
+
+    <script>
+      var lock = new Auth0Lock('lY6PHPcT6qeOgVMTuQA57EMxdLDhxtb2', 'benvenker.auth0.com');
+      var btn_login = document.getElementById('btn-login');
+      btn_login.addEventListener('click', function() {
+        lock.show();
+      });
+      lock.on("authenticated", function(authResult) {
+        lock.getUserInfo(authResult.accessToken, function(error, profile) {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          localStorage.setItem('jwt', authResult.idToken);
+          localStorage.setItem('profile', JSON.stringify(profile));
+        });
+      });
+    </script>
+
   </body>
 </html>

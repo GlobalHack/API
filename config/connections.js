@@ -87,7 +87,7 @@ module.exports.connections = {
     port: '32772',
     user: 'postgres', // optional
     password: '', // optional
-    database: 'sails' //optional
+    database: 'postgres' //optional
   },
 
   /***************************************************************************
