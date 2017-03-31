@@ -8,11 +8,11 @@ module.exports = {
       required: true
     },
     icon: {
-      model: 'user',
+      type: 'text',
       required: true
     },
     link: {
-      model: 'user',
+      type: 'text',
       required: true
     }
   }

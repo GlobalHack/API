@@ -12,7 +12,7 @@ module.exports = {
     },
     type: {
       type: 'string',
-      enum: ['string', 'Number', 'Boolean']
+      enum: ['String', 'Number', 'Boolean']
     },
     required: {
       type: 'boolean',

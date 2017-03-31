@@ -82,13 +82,13 @@ module.exports.connections = {
   //   database: 'YOUR_POSTGRES_DB' //optional
   // }
   kitematicPostgreSQLServer: {
-    adapter: 'sails-postgresql',
-    host: '192.168.99.100',
-    port: '32772',
-    user: 'postgres', // optional
-    password: '', // optional
-    database: 'postgres' //optional
-  },
+    adapter : 'sails-postgresql',
+    host    : '192.168.99.100',
+    port    : '32772',
+    user    : 'postgres',
+    password: '',
+    database: 'postgres'
+  }
 
   /***************************************************************************
    *                                                                          *
