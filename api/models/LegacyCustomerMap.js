@@ -7,7 +7,7 @@ module.exports = {
       model: 'organization'
     },
     customer: {
-      model: 'customer'
+      model: 'consumer'
     },
     legacy_uuid: {
       type: 'string'
