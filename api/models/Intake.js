@@ -4,16 +4,14 @@ module.exports = {
   },
   attributes: {
     customer: {
-      model: 'customer',
-      unique: true
+      model: 'consumer'
     },
     employee: {
-      model: 'employee',
-      unique: true
+      model: 'employee'
     },
     score: {
       "type": "integer",
-      defaultsTo: 0,
+      defaultsTo: 0
     }
   }
 };
