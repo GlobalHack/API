@@ -12,7 +12,7 @@ module.exports = {
     },
     type: {
       type: 'string',
-      enum: ['String', 'Number', 'Boolean']
+      enum: ['string', 'number', 'boolean', 'date']
     },
     required: {
       type: 'boolean',
@@ -23,6 +23,11 @@ module.exports = {
     },
     widget: {
       model: 'widget'
-    }
+    },
+    questionsets: {
+      collection: 'questionset',
+      via: 'questions',
+      through: 'questionsetquestion'
+    },
   }
 };

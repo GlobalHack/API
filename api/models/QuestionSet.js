@@ -11,7 +11,9 @@ module.exports = {
       required: true
     },
     questions: {
-      collection: 'question'
+      collection: 'question',
+      via: 'questionsets',
+      through: 'questionsetquestion',
     }
   }
 };

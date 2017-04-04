@@ -27,4 +27,4 @@ module.exports.sendInvite = function(invite_email) {
         }
         console.log('Message sent: ' + info.response);
     });
-}
+};

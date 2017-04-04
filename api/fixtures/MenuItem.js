@@ -7,9 +7,9 @@ var createMenuItem = function (text, icon, link) {
 };
 
 var fixtures = [
-  createMenuItem('Customers', '', '/customers'),
-  createMenuItem('Employees', '', '/employees'),
-  createMenuItem('Intakes', '', '/intakes'),
+  createMenuItem('Consumers', 'Trending flat', '/consumers'),
+  createMenuItem('Employees', 'Trending flat', '/employees'),
+  createMenuItem('Intakes', 'Trending flat', '/intakes'),
 ];
 
 module.exports = {
