@@ -17,8 +17,8 @@ module.exports.models = {
   * connections (see `config/connections.js`)                                *
   *                                                                          *
   ***************************************************************************/
-  connection: 'kitematicPostgreSQLServer',
-
+  //connection: 'kitematicPostgreSQLServer',
+  connection: 'awsTestPostgreSQLServer',
   /***************************************************************************
   *                                                                          *
   * How and whether Sails will attempt to automatically rebuild the          *

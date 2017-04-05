@@ -88,6 +88,14 @@ module.exports.connections = {
     user    : 'postgres',
     password: '',
     database: 'postgres'
+  },
+  awsTestPostgreSQLServer: {
+    adapter : 'sails-postgresql',
+    host    : 'cemaritan-test.cm8v8ipcnkcx.us-west-2.rds.amazonaws.com',
+    port    : 5432,
+    user    : 'cemaritanadmin',
+    password: 'cemaritanpassword',
+    database: 'cemaritantest'
   }
 
   /***************************************************************************
