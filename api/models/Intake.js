@@ -1,9 +1,9 @@
 module.exports = {
   meta: {
-    schemaName: 'customer_information'
+    schemaName: 'consumer_information'
   },
   attributes: {
-    customer: {
+    consumer: {
       model: 'consumer'
     },
     employee: {

@@ -2,12 +2,12 @@ var uuid = require('uuid');
 
 module.exports = {
   meta: {
-    schemaName: 'customer_information'
+    schemaName: 'consumer_information'
   },
   attributes: {
     uuid: {
       type: 'string',
-      defaultsTo: function () {
+      defaultsTo: function() {
         return uuid.v4();
       },
       unique: true
@@ -16,37 +16,37 @@ module.exports = {
       type: 'string',
       size: 64,
       columnName: 'first_name',
-      title: 'First Name',
+      //title: 'First Name',
       required: true
     },
     lastName: {
       type: 'string',
       size: 64,
       columnName: 'last_name',
-      title: 'Last Name',
+      //title: 'Last Name',
       required: true
     },
     ssn: {
       type: 'string',
       size: 11,
-      title: 'SSN',
+      //title: 'SSN',
       required: true
     },
     domesticViolence: {
       type: 'boolean',
       columnName: 'domestic_violence',
-      title: 'Domestic Violence'
+      //title: 'Domestic Violence'
     },
     youth: {
       type: 'boolean',
       columnName: 'youth',
-      title: 'Youth'
+      //title: 'Youth'
     },
     dateOfBirth: {
       type: 'date',
       before: new Date(),
       columnName: 'date_of_birth',
-      title: 'Date of Birth',
+      //title: 'Date of Birth',
       required: true
     }
   }
