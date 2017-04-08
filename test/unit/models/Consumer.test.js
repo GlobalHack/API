@@ -1,5 +1,8 @@
 'use strict'
 let expect = require('chai').expect
+const uid = require('uid')
+const uid1 = uid()
+const uid2 = uid()
 
 describe('ConsumerModel', function() {
   let testID = null
@@ -7,16 +10,16 @@ describe('ConsumerModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Consumer.create({
-          'firstName': 'Test',
-          'lastName': 'Tester',
-          'ssn': '123-45-6789',
+          'firstName': uid1,
+          'lastName': uid1,
+          'ssn': uid1,
           'domesticViolence': true,
           'youth': true,
           'dateOfBirth': '01-01-2001'
         })
         .then(function(results) {
           // run some tests
-          expect(results.firstName).to.equal('Test')
+          expect(results.firstName).to.equal(uid1)
           // save the id of the new record
           testID = results.id
           done()
@@ -32,7 +35,7 @@ describe('ConsumerModel', function() {
         })
         .then(function(results) {
           // run some tests
-          expect(results.firstName).to.equal('Test')
+          expect(results.firstName).to.equal(uid1)
           done()
         })
         .catch(done)
@@ -44,11 +47,11 @@ describe('ConsumerModel', function() {
       Consumer.update({
           'id': testID
         }, {
-          'ssn': '987-65-4321'
+          'ssn': uid2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].ssn).to.equal('987-65-4321')
+          expect(results[0].ssn).to.equal(uid2)
           done()
         })
         .catch(done)

@@ -1,5 +1,8 @@
 'use strict'
 let expect = require('chai').expect
+const uid = require('uid')
+const uid1 = uid()
+const uid2 = uid()
 
 describe('EmployeeModel', function() {
   let testID = null
@@ -8,17 +11,17 @@ describe('EmployeeModel', function() {
       // Create a new resource
       Employee.create({
           'organization': 1,
-          'firstName': 'Tom',
-          'lastName': 'Tester',
-          'nickname': 'The Testerino',
-          'email': 'Tom.Tester@aol.com',
+          'firstName': uid1,
+          'lastName': uid1,
+          'nickname': uid1,
+          'email': uid1,
           'role': 1,
           'disabled': false,
           'email_verified': false
         })
         .then(function(results) {
           // run some tests
-          expect(results.firstName).to.equal('Tom')
+          expect(results.firstName).to.equal(uid1)
           // save the id of the new record
           testID = results.id
           done()
@@ -34,7 +37,7 @@ describe('EmployeeModel', function() {
         })
         .then(function(results) {
           // run some tests
-          expect(results.firstName).to.equal('Tom')
+          expect(results.firstName).to.equal(uid1)
           done()
         })
         .catch(done)
@@ -46,11 +49,11 @@ describe('EmployeeModel', function() {
       Employee.update({
           'id': testID
         }, {
-          'nickname': 'The Dude'
+          'nickname': uid2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].nickname).to.equal('The Dude')
+          expect(results[0].nickname).to.equal(uid2)
           done()
         })
         .catch(done)

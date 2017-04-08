@@ -7,27 +7,8 @@ describe('IntakeModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Intake.create({
-          'consumer': {
-            'firstName': 'Test',
-            'lastName': 'Tester',
-            'ssn': '123-45-6789',
-            'domesticViolence': true,
-            'youth': true,
-            'dateOfBirth': '01-01-2001'
-          },
-          'employee': {
-            'organization': {
-              'name': 'Test House',
-              'address': '123 Test Street, Saint Louis, MO 63124'
-            },
-            'firstName': 'Tom',
-            'lastName': 'Tester',
-            'nickname': 'The Testerino',
-            'email': 'Tom.Tester@aol.com',
-            'role': 1,
-            'disabled': false,
-            'email_verified': false
-          },
+          'consumer': 1,
+          'employee': 1,
           'score': 1
         })
         .then(function(results) {

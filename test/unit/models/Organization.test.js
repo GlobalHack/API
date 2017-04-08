@@ -1,5 +1,8 @@
 'use strict'
 let expect = require('chai').expect
+const uid = require('uid')
+const uid1 = uid()
+const uid2 = uid()
 
 describe('OrganizationModel', function() {
   let testID = null
@@ -7,12 +10,12 @@ describe('OrganizationModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Organization.create({
-          'name': 'Test House',
-          'address': '123 Test Street, Saint Louis, MO 63124'
+          'name': uid1,
+          'address': uid1
         })
         .then(function(results) {
           // run some tests
-          expect(results.name).to.equal('Test House')
+          expect(results.name).to.equal(uid1)
           // save the id of the new record
           testID = results.id
           done()
@@ -28,7 +31,7 @@ describe('OrganizationModel', function() {
         })
         .then(function(results) {
           // run some tests
-          expect(results.name).to.equal('Test House')
+          expect(results.name).to.equal(uid1)
           done()
         })
         .catch(done)
@@ -40,11 +43,11 @@ describe('OrganizationModel', function() {
       Organization.update({
           'id': testID
         }, {
-          'address': '456 Test Lane, Saint Louis, MO 63124'
+          'address': uid2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].address).to.equal('456 Test Lane, Saint Louis, MO 63124')
+          expect(results[0].address).to.equal(uid2)
           done()
         })
         .catch(done)

@@ -1,5 +1,8 @@
 'use strict'
 let expect = require('chai').expect
+const uid = require('uid')
+const uid1 = uid()
+const uid2 = uid()
 
 describe('CoordinatedEntryGroupModel', function() {
   let testID = null
@@ -8,12 +11,12 @@ describe('CoordinatedEntryGroupModel', function() {
       // Create a new resource
       CoordinatedEntryGroup.create({
           'lead_organization': 1,
-          'name': 'Test Houses',
+          'name': uid1,
           'access_level': 1
         })
         .then(function(results) {
           // run some tests
-          expect(results.name).to.equal('Test Houses')
+          expect(results.name).to.equal(uid1)
           // save the id of the new record
           testID = results.id
           done()
@@ -29,7 +32,7 @@ describe('CoordinatedEntryGroupModel', function() {
         })
         .then(function(results) {
           // run some tests
-          expect(results.name).to.equal('Test Houses')
+          expect(results.name).to.equal(uid1)
           done()
         })
         .catch(done)
@@ -41,11 +44,11 @@ describe('CoordinatedEntryGroupModel', function() {
       CoordinatedEntryGroup.update({
           'id': testID
         }, {
-          'name': 'Test Neighborhood'
+          'name': uid2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].name).to.equal('Test Neighborhood')
+          expect(results[0].name).to.equal(uid2)
           done()
         })
         .catch(done)
