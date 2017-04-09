@@ -1,8 +1,5 @@
 'use strict'
 let expect = require('chai').expect
-// const uid = require('uid')
-// const uid1 = uid()
-// const uid2 = uid()
 const faker = require('faker')
 
 describe('ConsumerModel', function() {

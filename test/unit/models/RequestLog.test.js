@@ -1,28 +1,28 @@
 'use strict'
 let expect = require('chai').expect
-const uid = require('uid')
-const uid1 = uid()
-const uid2 = uid()
+const faker = require('faker')
 
 describe('RequestLogModel', function() {
-  let testID = null
+  let testObject = null
+  let testIP = faker.fake("{{internet.ip}}")
+  let testIP2 = faker.fake("{{internet.ip}}")
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       RequestLog.create({
-          'id': uid1,
-          'ipAddress': uid1,
-          'method': uid1,
-          'url': 'http://www.google.com',
+          'id': faker.fake("{{random.uuid}}"),
+          'ipAddress': testIP,
+          'method': "POST",
+          'url': faker.fake("{{internet.url}}"),
           'body': JSON.stringify({'key': 'value'}),
-          'user': 1,
-          'model': 1
+          'model': 'Test Model'
         })
         .then(function(results) {
           // run some tests
-          expect(results.ipAddress).to.equal(uid1)
+          expect(results.ipAddress).to.equal(testIP)
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -32,11 +32,11 @@ describe('RequestLogModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       RequestLog.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
-          expect(results.ipAddress).to.equal(uid1)
+          expect(results.ipAddress).to.equal(testIP)
           done()
         })
         .catch(done)
@@ -46,13 +46,13 @@ describe('RequestLogModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       RequestLog.update({
-          'id': testID
+          'id': testObject.id
         }, {
-          'ipAddress': uid2
+          'ipAddress': testIP2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].ipAddress).to.equal(uid2)
+          expect(results[0].ipAddress).to.equal(testIP2)
           done()
         })
         .catch(done)
@@ -62,11 +62,11 @@ describe('RequestLogModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       RequestLog.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           RequestLog.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -76,4 +76,5 @@ describe('RequestLogModel', function() {
         .catch(done)
     })
   })
+
 })

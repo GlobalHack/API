@@ -8,7 +8,7 @@ const faker = require('faker')
 describe('OrganizationModel', function() {
   let testObject = null
   let testName = faker.fake("{{company.companyName}}")
-  let testAddress = faker.fake("123 {{address.streetName}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}")
+  let testAddress = faker.fake("{{address.streetAddress}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}")
 
   describe('#create()', function() {
     it('should check create function', function(done) {

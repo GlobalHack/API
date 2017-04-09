@@ -1,20 +1,7 @@
 'use strict'
 const expect = require('chai').expect
 const faker = require('faker')
-const s = require('underscore.string')
 const uuid = require('uuid').v4
-
-// let generateSSN = () => {
-//   let one = s.pad(Math.floor(Math.random() * 999), 3, 0);
-//   let two = s.pad(Math.floor(Math.random() * 99), 2, 0);
-//   let three = s.pad(Math.floor(Math.random() * 9999), 4, 0);
-//   return (`${one}-${two}-${three}`);
-// }
-//
-// let generateRecentDate = () => {
-//   let date = faker.fake("{{date.recent}}").split(" ");
-//   return (`${date[1]} ${date[2]}, ${date[3]}`);
-// }
 
 describe('IntakeModel', () => {
   let testObject = null

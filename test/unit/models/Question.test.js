@@ -1,32 +1,31 @@
 'use strict'
 let expect = require('chai').expect
-const uid = require('uid')
-const uid1 = uid()
-const uid2 = uid()
+let faker = require('faker')
 
 describe('QuestionModel', function() {
-  let testID = null
+  let testObject = null
+  let testTitle = faker.fake("{{lorem.sentence}}")
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Question.create({
-          'title': uid1,
-          'help': uid1,
+          'title': testTitle,
+          'help': faker.fake("{{random.word}}"),
           'type': 'string',
           'required': false,
-          'prefix': 1,
-          'widget': 1,
-          'questionset': {
-            "organization": 1,
-            "title": uid1,
-            "questions": [1,2,3]
+          'prefix': {
+            'prefix': faker.fake("{{random.word}}")
+          },
+          'widget': {
+            'title': faker.fake("{{random.word}}")
           }
         })
         .then(function(results) {
           // run some tests
-          expect(results.title).to.equal(uid1)
+          expect(results.title).to.equal(testTitle)
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -36,11 +35,11 @@ describe('QuestionModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       Question.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
-          expect(results.title).to.equal(uid1)
+          expect(results.title).to.equal(testTitle)
           done()
         })
         .catch(done)
@@ -50,13 +49,13 @@ describe('QuestionModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       Question.update({
-          'id': testID
+          'id': testObject.id
         }, {
-          'title': uid2
+          'title': 'Something Different'
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].title).to.equal(uid2)
+          expect(results[0].title).to.equal('Something Different')
           done()
         })
         .catch(done)
@@ -66,11 +65,11 @@ describe('QuestionModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       Question.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           Question.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -80,4 +79,21 @@ describe('QuestionModel', function() {
         .catch(done)
     })
   })
+
+  describe('cleaning up', () => {
+    it('should clean up test dependencies', (done) => {
+      Promise.all([
+          Prefix.destroy({
+            'id': testObject.organization
+          }),
+          Widget.destroy({
+            'id': testObject.organization
+          })
+        ]).then((results) => {
+          done()
+        })
+        .catch(done)
+    })
+  })
+
 })

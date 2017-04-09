@@ -1,24 +1,26 @@
 'use strict'
 let expect = require('chai').expect
-const uid = require('uid')
-const uid1 = uid()
-const uid2 = uid()
+const faker = require('faker')
 
 describe('QuestionSetModel', function() {
-  let testID = null
+  let testObject = null
+  let testTitle = faker.fake("{{lorem.sentence}}")
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       QuestionSet.create({
-          'organization': 1,
-          'title': uid1,
-          'questions': 1
+          'organization': {
+            'name': faker.fake("{{company.companyName}}"),
+            'address': faker.fake("{{address.streetAddress}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}")
+          },
+          'title': testTitle,
         })
         .then(function(results) {
           // run some tests
-          expect(results.title).to.equal(uid1)
+          expect(results.title).to.equal(testTitle)
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -28,11 +30,11 @@ describe('QuestionSetModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       QuestionSet.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
-          expect(results.title).to.equal(uid1)
+          expect(results.title).to.equal(testTitle)
           done()
         })
         .catch(done)
@@ -42,13 +44,13 @@ describe('QuestionSetModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       QuestionSet.update({
-          'id': testID
+          'id': testObject.id
         }, {
-          'title': uid2
+          'title': 'Something different'
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].title).to.equal(uid2)
+          expect(results[0].title).to.equal('Something different')
           done()
         })
         .catch(done)
@@ -58,11 +60,11 @@ describe('QuestionSetModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       QuestionSet.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           QuestionSet.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -72,4 +74,18 @@ describe('QuestionSetModel', function() {
         .catch(done)
     })
   })
+
+  describe('cleaning up', () => {
+    it('should clean up test dependencies', (done) => {
+      Promise.all([
+          Organization.destroy({
+            'id': testObject.organization
+          })
+        ]).then((results) => {
+          done()
+        })
+        .catch(done)
+    })
+  })
+
 })

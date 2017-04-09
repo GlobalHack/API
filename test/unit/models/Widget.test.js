@@ -1,20 +1,23 @@
 'use strict'
 let expect = require('chai').expect
+const faker = require('faker')
 
-describe('GroupMembershipModel', function() {
-  let testID = null
+describe('WidgetModel', function() {
+  let testObject = null
+  let testTitle = faker.fake("{{lorem.sentence}}")
+  let testTitle2 = faker.fake("{{lorem.sentence}}")
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
-      GroupMembership.create({
-          'organization': 1,
-          'CoordinatedEntryGroup': 1
+      Widget.create({
+          'title': testTitle
         })
         .then(function(results) {
           // run some tests
-          expect(results.organization).to.equal(1)
+          expect(results.title).to.equal(testTitle)
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -23,12 +26,12 @@ describe('GroupMembershipModel', function() {
 
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
-      GroupMembership.findOne({
-          'id': testID
+      Widget.findOne({
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
-          expect(results.organization).to.equal(1)
+          expect(results.title).to.equal(testTitle)
           done()
         })
         .catch(done)
@@ -37,14 +40,14 @@ describe('GroupMembershipModel', function() {
 
   describe('#update()', function() {
     it('should check update function', function(done) {
-      GroupMembership.update({
-          'id': testID
+      Widget.update({
+          'id': testObject.id
         }, {
-          'organization': 2
+          'title': testTitle2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].organization).to.equal(2)
+          expect(results[0].title).to.equal(testTitle2)
           done()
         })
         .catch(done)
@@ -53,12 +56,12 @@ describe('GroupMembershipModel', function() {
 
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
-      GroupMembership.destroy({
-          'id': testID
+      Widget.destroy({
+          'id': testObject.id
         })
         .then(function() {
-          GroupMembership.findOne({
-              'id': testID
+          Widget.findOne({
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -68,4 +71,5 @@ describe('GroupMembershipModel', function() {
         .catch(done)
     })
   })
+
 })

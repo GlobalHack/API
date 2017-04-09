@@ -1,23 +1,26 @@
 'use strict'
 let expect = require('chai').expect
-const uid = require('uid')
-const uid1 = uid()
-const uid2 = uid()
+const faker = require('faker')
 
 describe('PrefixModel', function() {
-  let testID = null
+  let testObject = null
+  let testPrefix = faker.fake("{{random.word}}")
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Prefix.create({
-          'organization': 1,
-          'prefix': uid1
+          'organization': {
+            'name': faker.fake("{{company.companyName}}"),
+            'address': faker.fake("{{address.streetAddress}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}")
+          },
+          'prefix': testPrefix
         })
         .then(function(results) {
           // run some tests
-          expect(results.prefix).to.equal(uid1)
+          expect(results.prefix).to.equal(testPrefix)
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -27,11 +30,11 @@ describe('PrefixModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       Prefix.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
-          expect(results.prefix).to.equal(uid1)
+          expect(results.prefix).to.equal(testPrefix)
           done()
         })
         .catch(done)
@@ -41,13 +44,13 @@ describe('PrefixModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       Prefix.update({
-          'id': testID
+          'id': testObject.id
         }, {
-          'prefix': uid2
+          'prefix': 'Something different'
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].prefix).to.equal(uid2)
+          expect(results[0].prefix).to.equal('Something different')
           done()
         })
         .catch(done)
@@ -57,11 +60,11 @@ describe('PrefixModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       Prefix.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           Prefix.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -71,4 +74,18 @@ describe('PrefixModel', function() {
         .catch(done)
     })
   })
+
+  describe('cleaning up', () => {
+    it('should clean up test dependencies', (done) => {
+      Promise.all([
+          Organization.destroy({
+            'id': testObject.organization
+          })
+        ]).then((results) => {
+          done()
+        })
+        .catch(done)
+    })
+  })
+
 })

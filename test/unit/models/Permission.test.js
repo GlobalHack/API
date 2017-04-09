@@ -5,23 +5,24 @@ const uid1 = uid()
 const uid2 = uid()
 
 describe('PermissionModel', function() {
-  let testID = null
+  let testObject = null
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Permission.create({
-          'model': 1,
+          'model': {
+            'name' : 'Test Model',
+            'identity': 'Test Identity',
+            'attributes': JSON.stringify({'key':'value'})
+          },
           'action': 'read',
-          'relation': 'role',
-          'role': 1,
-          'user': 1,
-          'criteria': 1
+          'relation': 'role'
         })
         .then(function(results) {
           // run some tests
           expect(results.action).to.equal('read')
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -31,7 +32,7 @@ describe('PermissionModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       Permission.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
@@ -45,7 +46,7 @@ describe('PermissionModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       Permission.update({
-          'id': testID
+          'id': testObject.id
         }, {
           'action': 'create'
         })
@@ -61,11 +62,11 @@ describe('PermissionModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       Permission.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           Permission.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -75,4 +76,18 @@ describe('PermissionModel', function() {
         .catch(done)
     })
   })
+
+  describe('cleaning up', () => {
+    it('should clean up test dependencies', (done) => {
+      Promise.all([
+          Model.destroy({
+            'id': testObject.model
+          })
+        ]).then((results) => {
+          done()
+        })
+        .catch(done)
+    })
+  })
+
 })

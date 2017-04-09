@@ -1,8 +1,5 @@
 'use strict'
 let expect = require('chai').expect
-const uid = require('uid')
-const uid1 = uid()
-const uid2 = uid()
 
 describe('CriteriaModel', function() {
   let testID = null
@@ -10,13 +7,14 @@ describe('CriteriaModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Criteria.create({
-          'where': JSON.stringify({'key':'value'}),
-          'blacklist': [1,2,3,4,5],
-          'permission': 1
+          'where': JSON.stringify({
+            'key': 'value'
+          }),
+          'blacklist': [1, 2, 3, 4, 5]
         })
         .then(function(results) {
           // run some tests
-          expect(results.permission).to.equal(1)
+          expect(results.blacklist[0]).to.equal(1)
           // save the id of the new record
           testID = results.id
           done()
@@ -32,7 +30,7 @@ describe('CriteriaModel', function() {
         })
         .then(function(results) {
           // run some tests
-          expect(results.permission).to.equal(1)
+          expect(results.blacklist[0]).to.equal(1)
           done()
         })
         .catch(done)
@@ -44,11 +42,11 @@ describe('CriteriaModel', function() {
       Criteria.update({
           'id': testID
         }, {
-          'permission': 2
+          'blacklist': [6, 7, 8, 9, 10]
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].permission).to.equal(2)
+          expect(results[0].blacklist[0]).to.equal(6)
           done()
         })
         .catch(done)

@@ -1,24 +1,36 @@
 'use strict'
 let expect = require('chai').expect
 const uuid = require('uuid')
-const uuid1 = uuid.v4()
-const uuid2 = uuid.v4()
+const faker = require('faker')
 
 describe('LegacyConsumerMapModel', function() {
-  let testID = null
+  let testObject = null
+  let uuid1 = uuid.v4()
+  let uuid2 = uuid.v4()
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       LegacyConsumerMap.create({
-          'organiation': 1,
-          'consumer': 1,
+          'organization': {
+            'name': faker.fake("{{company.companyName}}"),
+            'address': faker.fake("{{address.streetAddress}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}")
+          },
+          'consumer': {
+            'firstName': faker.fake("{{name.firstName}}"),
+            'lastName': faker.fake("{{name.lastName}}"),
+            'ssn': '123-45-6789',
+            'domesticViolence': true,
+            'youth': true,
+            'dateOfBirth': '01-01-2001'
+          },
           'legacy_uuid': uuid1
         })
         .then(function(results) {
           // run some tests
           expect(results.legacy_uuid).to.equal(uuid1)
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -28,7 +40,7 @@ describe('LegacyConsumerMapModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       LegacyConsumerMap.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
@@ -42,7 +54,7 @@ describe('LegacyConsumerMapModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       LegacyConsumerMap.update({
-          'id': testID
+          'id': testObject.id
         }, {
           'legacy_uuid': uuid2
         })
@@ -58,11 +70,11 @@ describe('LegacyConsumerMapModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       LegacyConsumerMap.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           LegacyConsumerMap.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -72,4 +84,21 @@ describe('LegacyConsumerMapModel', function() {
         .catch(done)
     })
   })
+
+  describe('cleaning up', () => {
+    it('should clean up test dependencies', (done) => {
+      Promise.all([
+          Organization.destroy({
+            'id': testObject.organization
+          }),
+          Consumer.destroy({
+            'id': testObject.consumer
+          })
+        ]).then((results) => {
+          done()
+        })
+        .catch(done)
+    })
+  })
+
 })

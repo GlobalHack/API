@@ -1,24 +1,28 @@
 'use strict'
 let expect = require('chai').expect
-const uid = require('uid')
-const uid1 = uid()
-const uid2 = uid()
+const faker = require('faker')
 
 describe('CoordinatedEntryGroupModel', function() {
-  let testID = null
+  let testObject = null
+  let testName = faker.fake("{{company.companyName}}")
+  let testAddress = faker.fake("{{address.streetAddress}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}")
+
   describe('#create()', function() {
     it('should check create function', function(done) {
       // Create a new resource
       CoordinatedEntryGroup.create({
-          'lead_organization': 1,
-          'name': uid1,
+          'lead_organization': {
+            'name': testName,
+            'address': testAddress,
+          },
+          'name': 'My Test Group',
           'access_level': 1
         })
         .then(function(results) {
           // run some tests
-          expect(results.name).to.equal(uid1)
+          expect(results.name).to.equal('My Test Group')
           // save the id of the new record
-          testID = results.id
+          testObject = results
           done()
         })
         .catch(done)
@@ -28,11 +32,11 @@ describe('CoordinatedEntryGroupModel', function() {
   describe('#findOne()', function() {
     it('should check find one function', function(done) {
       CoordinatedEntryGroup.findOne({
-          'id': testID
+          'id': testObject.id
         })
         .then(function(results) {
           // run some tests
-          expect(results.name).to.equal(uid1)
+          expect(results.access_level).to.equal(1)
           done()
         })
         .catch(done)
@@ -42,13 +46,13 @@ describe('CoordinatedEntryGroupModel', function() {
   describe('#update()', function() {
     it('should check update function', function(done) {
       CoordinatedEntryGroup.update({
-          'id': testID
+          'id': testObject.id
         }, {
-          'name': uid2
+          'access_level': 2
         })
         .then(function(results) {
           // run some tests
-          expect(results[0].name).to.equal(uid2)
+          expect(results[0].access_level).to.equal(2)
           done()
         })
         .catch(done)
@@ -58,11 +62,11 @@ describe('CoordinatedEntryGroupModel', function() {
   describe('#destroy()', function() {
     it('should check destroy function', function(done) {
       CoordinatedEntryGroup.destroy({
-          'id': testID
+          'id': testObject.id
         })
         .then(function() {
           CoordinatedEntryGroup.findOne({
-              'id': testID
+              'id': testObject.id
             })
             .then(function(results) {
               expect(results).to.be.undefined
@@ -72,4 +76,18 @@ describe('CoordinatedEntryGroupModel', function() {
         .catch(done)
     })
   })
+
+  describe('cleaning up', () => {
+    it('should clean up test dependencies', (done) => {
+      Promise.all([
+          Organization.destroy({
+            'id': testObject.lead_organization
+          })
+        ]).then((results) => {
+          done()
+        })
+        .catch(done)
+    })
+  })
+
 })
