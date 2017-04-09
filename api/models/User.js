@@ -13,6 +13,31 @@ _.merge(exports, {
     permissions: {
       collection: "Permission",
       via: "user"
+    },
+    nickname: {
+      type: 'string'
+    },
+    username: {
+      type: 'string'
+    },
+    password: {
+      type: 'string'
+    },
+    emailVerified: {
+      type: 'boolean'
+    },
+    firstName: {
+      type: 'string',
+      size: 64,
+      columnName: 'first_name'
+    },
+    lastName: {
+      type: 'string',
+      size: 64,
+      columnName: 'last_name'
+    },
+    email: {
+      type: 'string'
     }
   },
 
