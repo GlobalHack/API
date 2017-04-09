@@ -24,7 +24,8 @@ _.merge(exports, {
       type: 'string'
     },
     emailVerified: {
-      type: 'boolean'
+      type: 'boolean',
+      columnName: 'email_verified'
     },
     firstName: {
       type: 'string',

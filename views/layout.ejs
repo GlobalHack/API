@@ -32,9 +32,8 @@
     <!--SCRIPTS END-->
 
     <script>
-      // TODO: we should move keys to check for enviornment variables
-      // var lock = new Auth0Lock('lY6PHPcT6qeOgVMTuQA57EMxdLDhxtb2', 'benvenker.auth0.com');
-      var lock = new Auth0Lock('GagQKRuCWhyN59HiSRa4WrEEK1YiTnBK', 'benvenker.auth0.com');
+      var lock = new Auth0Lock('lY6PHPcT6qeOgVMTuQA57EMxdLDhxtb2', 'benvenker.auth0.com');
+
       var btn_login = document.getElementById('btn-login');
       btn_login.addEventListener('click', function() {
         lock.show();
