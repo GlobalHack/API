@@ -1,16 +1,19 @@
 module.exports = {
   meta: {
-    schemaName: 'customer_information'
+    schemaName: 'consumer_information'
   },
   attributes: {
     intake: {
-      model: 'intake'
+      model: 'intake',
+      required: true
     },
     question: {
-      model: 'question'
+      model: 'question',
+      required: true
     },
     answer: {
-      type: 'text'
+      type: 'text',
+      required: true
     }
   }
 };

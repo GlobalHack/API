@@ -89,7 +89,7 @@ module.exports.connections = {
     password: '',
     database: 'postgres'
   },
-  devPostgresSQLServer: {
+  devPostgreSQLServer: {
     adapter : 'sails-postgresql',
     host    : 'gh-implementation-dev.cm8v8ipcnkcx.us-west-2.rds.amazonaws.com',
     port    : '5432',
@@ -97,7 +97,6 @@ module.exports.connections = {
     password: 'ghimplementationteamtestdb',
     database: 'dev'
   }
-
 
   /***************************************************************************
    *                                                                          *

@@ -8,10 +8,12 @@ module.exports = {
       required: true
     },
     fromUser: {
-      model: 'user'
+      model: 'user',
+      required: true
     },
     toUser: {
-      model: 'user'
+      model: 'user',
+      required: true
     }
   }
 };

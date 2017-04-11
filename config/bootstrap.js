@@ -32,6 +32,6 @@ function installFixtures() {
 }
 
 module.exports.bootstrap = function (cb) {
-  installFixtures();
+  //installFixtures();
   cb();
 };
