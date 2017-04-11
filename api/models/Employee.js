@@ -3,15 +3,6 @@ module.exports = {
     schemaName: 'organization_information'
   },
   attributes: {
-    nickname: {
-      type: 'string'
-    },
-    password: {
-      type: 'string'
-    },
-    email_Verified: {
-      type: 'boolean'
-    },
     organization: {
       model: 'organization'
     },
@@ -25,8 +16,7 @@ module.exports = {
       type: 'string'
     },
     ssn: {
-      type: 'string',
-      size: 11
+      type: 'string'
     }
   }
 };

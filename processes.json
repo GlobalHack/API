@@ -1,0 +1,19 @@
+{
+  "apps": [
+    {
+      "name": "cemaritan",
+      "script": "app.js",
+      "args": [
+        "--prod",
+        "-p",
+        "1337"
+      ],
+      "out_file": "/dev/null",
+      "error_file": "/dev/null",
+      "cwd": "/home/ubuntu/BatKnack",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
