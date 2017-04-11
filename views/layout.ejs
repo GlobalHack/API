@@ -32,7 +32,18 @@
     <!--SCRIPTS END-->
 
     <script>
-      var lock = new Auth0Lock('<%= process.env.AUTH0CLIENTID %>', '<%= process.env.AUTH0DOMAIN %>');
+      var lock = new Auth0Lock('<%= process.env.AUTH0CLIENTID %>', '<%= process.env.AUTH0DOMAIN %>', {
+        additionalSignUpFields: [
+          {
+            name       : "firstName",
+            placeholder: "Enter your first name"
+          },
+          {
+            name       : "lastName",
+            placeholder: "Enter your last name"
+          }
+        ]
+      });
 
       var btn_login = document.getElementById('btn-login');
       btn_login.addEventListener('click', function() {

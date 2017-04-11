@@ -10,7 +10,7 @@
       ],
       "out_file": "/dev/null",
       "error_file": "/dev/null",
-      "cwd": "/home/ubuntu/BatKnack",
+      "cwd": "/home/ubuntu/API",
       "env": {
         "NODE_ENV": "production"
       }
