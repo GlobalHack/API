@@ -11,8 +11,8 @@
 var jwt = require('express-jwt');
 module.exports = jwt(
   {
-    secret: 'm-zNSJsGuZ11Y8MOpgO0Zvdgbj8IzPEmsO9zhDwHab1eKAcmc-2RW46R_Y6lO517',
-    audience: 'lY6PHPcT6qeOgVMTuQA57EMxdLDhxtb2',
-    issuer: 'https://benvenker.auth0.com/'
+    secret: process.env.AUTH0SECRET,
+    audience: process.env.AUTH0CLIENTID,
+    issuer: 'https://'+process.env.AUTH0DOMAIN
   }
 );
