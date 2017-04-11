@@ -8,7 +8,8 @@ module.exports = {
       required: true
     },
     toUser: {
-      model: 'user'
+      model: 'user',
+      required: true
     }
   }
 };

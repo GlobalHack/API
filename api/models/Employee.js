@@ -16,14 +16,10 @@ module.exports = {
       model: 'organization'
     },
     firstName: {
-      type: 'string',
-      size: 64,
-      columnName: 'first_name'
+      type: 'string'
     },
     lastName: {
-      type: 'string',
-      size: 64,
-      columnName: 'last_name'
+      type: 'string'
     },
     email: {
       type: 'string'
