@@ -10,7 +10,8 @@ describe('NotificationModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Notification.create({
-          'text': uid1
+          'text': uid1,
+          'toUser': 1
         })
         .then(function(results) {
           // run some tests

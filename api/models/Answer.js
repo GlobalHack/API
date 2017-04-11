@@ -4,13 +4,16 @@ module.exports = {
   },
   attributes: {
     intake: {
-      model: 'intake'
+      model: 'intake',
+      required: true
     },
     question: {
-      model: 'question'
+      model: 'question',
+      required: true
     },
     answer: {
-      type: 'text'
+      type: 'text',
+      required: true
     }
   }
 };
