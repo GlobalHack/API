@@ -23,7 +23,7 @@
     <%- body %>
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <!--SCRIPTS-->
@@ -32,7 +32,7 @@
     <!--SCRIPTS END-->
 
     <script>
-      var lock = new Auth0Lock('<%= process.env.AUTH0CLIENTID %>', '<%= process.env.AUTH0DOMAIN %>', {
+      var lock = new Auth0Lock('<%= process.env.REACT_APP_AUTH0CLIENTID %>', '<%= process.env.REACT_APP_AUTH0DOMAIN %>', {
         additionalSignUpFields: [
           {
             name       : "firstName",

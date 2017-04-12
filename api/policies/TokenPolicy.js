@@ -12,7 +12,7 @@ var jwt = require('express-jwt');
 module.exports = jwt(
   {
     secret: process.env.AUTH0SECRET,
-    audience: process.env.AUTH0CLIENTID,
-    issuer: 'https://'+process.env.AUTH0DOMAIN
+    audience: process.env.REACT_APP_AUTH0CLIENTID,
+    issuer: 'https://'+process.env.REACT_APP_AUTH0DOMAIN
   }
 );
