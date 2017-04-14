@@ -13,6 +13,6 @@ module.exports = jwt(
   {
     secret: process.env.AUTH0SECRET,
     audience: process.env.REACT_APP_AUTH0CLIENTID,
-    issuer: 'https://'+process.env.REACT_APP_AUTH0DOMAIN
+    issuer: 'https://'+process.env.REACT_APP_AUTH0DOMAIN+'/'
   }
 );
