@@ -26,7 +26,16 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  '*': ['TokenPolicy', 'AuthPolicy'],
+  '*': [
+    'TokenPolicy',
+    'AuthPolicy',
+    'ModelPolicy',
+    'AuditPolicy.js',
+    'OwnerPolicy',
+    'PermissionPolicy',
+    'RolePolicy',
+    'CriteriaPolicy'
+  ],
 
   UserController: ['UserPolicy'],
 
