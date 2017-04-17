@@ -26,7 +26,9 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  '*': 'TokenPolicy',
+  '*': ['TokenPolicy', 'AuthPolicy'],
+
+  UserController: ['UserPolicy'],
 
   SwaggerController: true,
 
