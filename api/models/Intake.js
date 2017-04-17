@@ -10,7 +10,7 @@ module.exports = {
       model: 'employee'
     },
     score: {
-      "type": "integer",
+      type: 'integer',
       defaultsTo: 0
     }
   }

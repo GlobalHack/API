@@ -10,7 +10,9 @@ describe('MessageModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Message.create({
-          'text': uid1
+          'text': uid1,
+          'fromUser':1,
+          'toUser':1
         })
         .then(function(results) {
           // run some tests
