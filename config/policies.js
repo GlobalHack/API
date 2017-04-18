@@ -29,12 +29,12 @@ module.exports.policies = {
   '*': [
     'TokenPolicy',
     'AuthPolicy',
-    'ModelPolicy',
-    'AuditPolicy.js',
-    'OwnerPolicy',
-    'PermissionPolicy',
-    'RolePolicy',
-    'CriteriaPolicy'
+    // 'ModelPolicy',
+    // 'AuditPolicy',
+    // 'OwnerPolicy',
+    // 'PermissionPolicy',
+    // 'RolePolicy',
+    // 'CriteriaPolicy'
   ],
 
   UserController: ['UserPolicy'],

@@ -10,6 +10,7 @@ describe('QuestionModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Question.create({
+          'key': faker.fake("{{random.word}}"),
           'title': testTitle,
           'help': faker.fake("{{random.word}}"),
           'type': 'string',
