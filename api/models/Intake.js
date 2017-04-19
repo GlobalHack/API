@@ -12,6 +12,10 @@ module.exports = {
     score: {
       type: 'integer',
       defaultsTo: 0
+    },
+    complete: {
+      type: 'boolean',
+      defaultsTo: false
     }
   }
 };

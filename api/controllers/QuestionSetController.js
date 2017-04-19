@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var actionUtil = require('../services/actionService');
 var schemaFormService = require('../services/SchemaFormService');
 
