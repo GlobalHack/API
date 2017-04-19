@@ -27,8 +27,8 @@ module.exports.policies = {
    ***************************************************************************/
 
   '*': [
-    'TokenPolicy',
-    'AuthPolicy',
+    // 'TokenPolicy',
+    // 'AuthPolicy',
     // 'ModelPolicy',
     // 'AuditPolicy',
     // 'OwnerPolicy',

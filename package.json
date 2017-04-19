@@ -27,7 +27,8 @@
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
     "sails-postgresql": "^0.11.4",
-    "sails-swagger": "^0.5.1"
+    "sails-swagger": "^0.5.1",
+    "ssn": "^1.0.3"
   },
   "scripts": {
     "debug": "node debug app.js",
