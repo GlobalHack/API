@@ -5,6 +5,8 @@ var prefix = require('./Prefix');
 var menuitem = require('./MenuItem');
 var role = require('./Role');
 var consumer = require('./Consumer');
+var questionSet = require('./QuestionSet');
+var questionSetQuestion = require('./QuestionSetQuestion');
 
 module.exports = {
 
@@ -39,6 +41,8 @@ module.exports = {
     this.installFixture(MenuItem, 'MenuItems', menuitem.fixtures);
     this.installFixture(Role, 'Roles', role.fixtures);
     this.installFixture(Consumer, 'Consumers', consumer.fixtures);
+    this.installFixture(QuestionSet, 'Question Sets', questionSet.fixtures);
+    this.installFixture(QuestionSetQuestion, 'Question Set Questions', questionSetQuestion.fixtures);
     this.createModels();
   }
 };
