@@ -8,10 +8,18 @@ function cleanAnswer(answer) {
   };
 }
 
+function flatten(answer) {
+  return answer.value;
+}
+
 module.exports = {
 
   format: function (answers) {
-    return keyBy(_.map(answers, cleanAnswer), 'key');
+    var questionnaireState = {};
+    for (var key in answers) {
+      questionnaireState[answers[key].question.key] = answers[key].answer;
+    }
+    return questionnaireState
   }
 
 };

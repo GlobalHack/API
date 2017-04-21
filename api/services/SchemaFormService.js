@@ -13,7 +13,7 @@ function getSchemaVals(entry) {
 function getFormVals(entry) {
   return {
     'key'        : entry.key,
-    // 'type'       : entry.type,
+    // 'type'       : entry.widget,
     'placeholder': entry.help || ''
   };
 }
