@@ -30,7 +30,8 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/unit/models/*.test.js test/unit/fixtures/*.test.js"
   },
   "main": "app.js",
   "repository": {
@@ -40,6 +41,10 @@
   "author": "jamesmarlowe",
   "license": "",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "faker": "^4.1.0",
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0",
     "swagger-ui": "^3.0.2"
   }
 }

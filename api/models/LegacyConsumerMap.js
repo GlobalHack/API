@@ -6,7 +6,7 @@ module.exports = {
     organization: {
       model: 'organization'
     },
-    customer: {
+    consumer: {
       model: 'consumer'
     },
     legacy_uuid: {

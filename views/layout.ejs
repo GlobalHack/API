@@ -23,7 +23,7 @@
     <%- body %>
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <!--SCRIPTS-->
@@ -32,7 +32,23 @@
     <!--SCRIPTS END-->
 
     <script>
-      var lock = new Auth0Lock('lY6PHPcT6qeOgVMTuQA57EMxdLDhxtb2', 'benvenker.auth0.com');
+      var lock = new Auth0Lock('<%= process.env.REACT_APP_AUTH0CLIENTID %>', '<%= process.env.REACT_APP_AUTH0DOMAIN %>', {
+        auth: {
+          params: {
+            scope: 'openid uid org'
+          }
+        },
+        additionalSignUpFields: [
+          {
+            name       : "firstName",
+            placeholder: "Enter your first name"
+          },
+          {
+            name       : "lastName",
+            placeholder: "Enter your last name"
+          }
+        ]
+      });
 
       var btn_login = document.getElementById('btn-login');
       btn_login.addEventListener('click', function() {

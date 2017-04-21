@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-_.merge(exports, {
+module.exports = {
   meta: {
     schemaName: 'coordinated_entry_system'
   },
@@ -17,31 +17,22 @@ _.merge(exports, {
     nickname: {
       type: 'string'
     },
-    username: {
-      type: 'string'
-    },
     password: {
       type: 'string'
     },
     emailVerified: {
-      type: 'boolean',
-      columnName: 'email_verified'
+      type: 'boolean'
     },
     firstName: {
-      type: 'string',
-      size: 64,
-      columnName: 'first_name'
+      type: 'string'
     },
     lastName: {
-      type: 'string',
-      size: 64,
-      columnName: 'last_name'
+      type: 'string'
     },
     email: {
       type: 'string'
     }
   },
-
   setOwner: function ( options, cb ) {
     /**
       @param

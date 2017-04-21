@@ -19,7 +19,7 @@
       "name": "CoordinatedEntryGroup"
     },
     {
-      "name": "Customer"
+      "name": "Consumer"
     },
     {
       "name": "Employee"
@@ -34,7 +34,7 @@
       "name": "Invite"
     },
     {
-      "name": "LegacyCustomerMap"
+      "name": "LegacyConsumerMap"
     },
     {
       "name": "Message"
@@ -218,7 +218,7 @@
         }
       }
     },
-    "customer": {
+    "consumer": {
       "properties": {
         "createdBy": {
           "type": "integer",
@@ -365,7 +365,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "customer": {
+        "consumer": {
           "type": "integer",
           "format": "int32"
         },
@@ -427,7 +427,7 @@
         }
       }
     },
-    "legacycustomermap": {
+    "legacyconsumermap": {
       "properties": {
         "createdBy": {
           "type": "integer",
@@ -441,7 +441,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "customer": {
+        "consumer": {
           "type": "integer",
           "format": "int32"
         },
@@ -1181,7 +1181,7 @@
         "tags": []
       }
     },
-    "/api/customers/{id}": {
+    "/api/consumers/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -1626,7 +1626,7 @@
         "tags": []
       }
     },
-    "/api/legacycustomermaps/{id}": {
+    "/api/legacyconsumermaps/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -2988,7 +2988,7 @@
         "tags": []
       }
     },
-    "/api/customers": {
+    "/api/consumers": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3032,7 +3032,7 @@
         "tags": []
       }
     },
-    "/api/customers/{parentid}/createdBy/{id}": {
+    "/api/consumers/{parentid}/createdBy/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3069,7 +3069,7 @@
         "tags": []
       }
     },
-    "/api/customers/{parentid}/owner/{id}": {
+    "/api/consumers/{parentid}/owner/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3571,7 +3571,7 @@
         "tags": []
       }
     },
-    "/api/intakes/{parentid}/customer/{id}": {
+    "/api/intakes/{parentid}/consumer/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3874,7 +3874,7 @@
         "tags": []
       }
     },
-    "/api/legacycustomermaps": {
+    "/api/legacyconsumermaps": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3918,7 +3918,7 @@
         "tags": []
       }
     },
-    "/api/legacycustomermaps/{parentid}/createdBy/{id}": {
+    "/api/legacyconsumermaps/{parentid}/createdBy/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3955,7 +3955,7 @@
         "tags": []
       }
     },
-    "/api/legacycustomermaps/{parentid}/owner/{id}": {
+    "/api/legacyconsumermaps/{parentid}/owner/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -3992,7 +3992,7 @@
         "tags": []
       }
     },
-    "/api/legacycustomermaps/{parentid}/organization/{id}": {
+    "/api/legacyconsumermaps/{parentid}/organization/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
@@ -4029,7 +4029,7 @@
         "tags": []
       }
     },
-    "/api/legacycustomermaps/{parentid}/customer/{id}": {
+    "/api/legacyconsumermaps/{parentid}/consumer/{id}": {
       "get": {
         "summary": "Read Object(s)",
         "consumes": [
