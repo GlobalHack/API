@@ -14,7 +14,7 @@ function getFormVals(entry) {
   return {
     'key'        : entry.key,
     // 'type'       : entry.type,
-    'placeholder': entry.help || entry.title
+    'placeholder': entry.help || ''
   };
 }
 
