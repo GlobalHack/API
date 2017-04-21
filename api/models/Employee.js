@@ -17,6 +17,9 @@ module.exports = {
     },
     ssn: {
       type: 'string'
+    },
+    disabled: {
+      type: 'boolean'
     }
   }
 };
