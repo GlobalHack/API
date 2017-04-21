@@ -40,18 +40,12 @@ module.exports = {
         owner - id to set to owner of user ( defaults to using user id)
 
     **/
-
-    const user = options.user;
-    const owner = typeof options.owner === 'undefined' ? options.owner : options.user;
-
-    sails.log.verbose('User.afterCreate.setOwner', user);
-    User.update({ id: user }, { owner: user })
+    User.update({ id: options.user }, { owner: options.user })
       .catch(function(e){
-        sails.log.error(e);
         return cb(e)
       })
 
-    cb();
+    return cb();
   },
   attachDefaultRole: function ( options, cb ) {
     /**
@@ -59,24 +53,27 @@ module.exports = {
         user - id of user model to update
 
     **/
-    const user = options.user;
+    User.findOne(options.user).populate('roles')
+    .exec( function(err, user){
+      if( err || user == undefined ){
+        return cb('error');
+      }
 
-    sails.log.verbose('User.afterCreate.attachDefaultRole', user);
-    User.findOne(user)
-      .populate('roles')
-      .then(function(_user){
-        user = _user;
-        return Role.findOne({ name: 'registered'});
-      })
-      .then(function(role){
+      Role.findOne({ name: 'registered'})
+      .exec(function(err, role){
+        if( err || role == undefined){
+          return cb('error');
+        }
+
         user.roles.add(role.id);
-        return user.save();
-      })
-      .catch(function(e){
-        sails.log.error(e);
-        return cb(e);
-      })
+        user.save(function(err){
+          if(err){
+            return cb('error');
+          }
 
-      cb();
+          return cb();
+        });
+      });
+    });
   }
-});
+}

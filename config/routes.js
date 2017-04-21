@@ -35,7 +35,7 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  'POST /signup': [ 'User.setOwner', 'User.attachDefaultRole' ],
+  'POST /signup': [ 'User.signUp' ],
 
   /***************************************************************************
   *                                                                          *
