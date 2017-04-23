@@ -7,7 +7,7 @@ module.exports = {
     PermissionMeta.find(metaCriteria)
       .exec(function(err, metaObjects){
         if (err) return cb(err);
-        
+
         for ( var i = 0; i < metaObjects.length; i += 1) {
           Role.getRoleForPermissionMeta({permissionMeta: metaObjects[i]})
           .then(function(role){
@@ -21,9 +21,8 @@ module.exports = {
           })
           .catch(function(err){
             sails.log.error(err);
-            break;
-          })
+          });
         }
-      }
+      });
     }
 }
