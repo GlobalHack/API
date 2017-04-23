@@ -104,5 +104,38 @@ module.exports = {
 
       next();
     }
-  ]
+  ],
+  buildPermissionFromMeta: function(options, cb){
+    /**
+    *@param permissionMeta object
+    *@return
+    **/
+    const permissionMeta = options.permissionMeta;
+
+    (function _lookupPermissionMetaIfNecessary(afterLookup){
+      if (typeof permissionMeta == 'object') return afterLookup(null, permissionMeta)
+      PermissionMeta.findOne(permissionMeta).exec(afterLookup)
+    })(function(err, permissionMeta){
+      if (err) return cb(err);
+      if (!permissionMeta){
+        err = new Error();
+        err.message = require('util').format('There is no Permission Meta object found that you reference.')
+        err.status = 404;
+        return cb(err);
+      }
+
+      PermissionService.grant({
+        role: permissionMeta.role,
+        model: permissionMeta.model,
+        action: permissionMeta.action,
+        criteria: {
+          where: permissionMeta.criteria ? permissionMeta.criteria : {},
+          blacklist: permissionMeta.blacklist ? permissionMeta.blacklist : []
+        }
+      }).then(function(){
+        sails.log("Created permission " + permissionMeta.action + "on " + permissionMeta.model + " for role " + permissionMeta.role);
+        return cb();
+      }).catch(sails.log.error);
+    });
+  }
 };

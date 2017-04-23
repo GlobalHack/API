@@ -94,7 +94,7 @@ module.exports = {
             { user: user.id }
           ]
         };
-        
+
         return Permission.find(permissionCriteria).populate('criteria')
       });
   },
