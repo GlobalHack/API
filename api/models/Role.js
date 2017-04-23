@@ -67,34 +67,42 @@ module.exports = {
   },
   dropAllPermissions: function(options, cb){
     /**
-    *@param role in which all permissions needs to be dropped
+    *@param roles in which all permissions needs to be dropped
     *@return
     **/
-    const role = options.role;
+    const roles = _.isArray(options.role) ? options.role : [options.role];
 
-    (function _lookupRoleIfNecessary(afterLookup){
-      if ( typeof role == 'object' ) return afterLookup(null, role)
-      Role.findOne(role).exec(afterLookup);
-    })(function(err, role){
-        if (err) return cb(err);
-        if(!role){
-          err = new Error();
-          err.message = require('util').format('There is no Role ob jects found that you are referencing.')
-          err.status = 404;
-          return cb(err);
-        }
+    for(var i = 0; i < roles.length; i += 1){
 
-        Permission.destroy({role: role.id}).exec(function(err, array){
-          if (err) {
-            return res.negotiate(err);
+      var role = roles[i];
+      (function _lookupRoleIfNecessary(afterLookup){
+        if ( typeof role == 'object' ) return afterLookup(null, role)
+        Role.findOne(role).exec(afterLookup);
+      })(function(err, role){
+          if (err) return cb(err);
+          if(!role){
+            err = new Error();
+            err.message = require('util').format('There is no Role ob jects found that you are referencing.')
+            err.status = 404;
+            return cb(err);
           }
 
-          if (array) {
-            Criteria.destroy({permission: _.pluck(array, "id")}).exec(sails.log)
-          }
+          Permission.destroy({role: role.id}).exec(function(err, array){
+            if (err) {
+              return cb(err);
+            }
 
-          return cb();
-        })
-    })
+            if (array) {
+              Criteria.destroy({permission: _.pluck(array, "id")}).exec(function(err, array){
+                if (err) {
+                  return cb(err);
+                }
+              });
+            }
+
+            return cb()
+          })
+      })
+    }
   }
 };

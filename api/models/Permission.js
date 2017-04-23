@@ -135,7 +135,9 @@ module.exports = {
       }).then(function(){
         sails.log("Created permission " + permissionMeta.action + "on " + permissionMeta.model + " for role " + permissionMeta.role);
         return cb();
-      }).catch(sails.log.error);
+      }).catch(function(err){
+        return cb(err);
+      });
     });
   }
 };
