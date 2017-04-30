@@ -5,7 +5,7 @@ function getSchemaVals(entry) {
   return {
     'key'    : entry.key,
     'title'  : entry.title,
-    'type'   : entry.type,
+    'type'   : 'string',
     'default': entry.default
   };
 }
@@ -13,7 +13,9 @@ function getSchemaVals(entry) {
 function getFormVals(entry) {
   return {
     'key'        : entry.key,
-    // 'type'       : entry.widget,
+    'type'       : entry.widget,
+    'help'       : entry.help,
+    'heading'    : entry.heading,
     'placeholder': entry.help || ''
   };
 }

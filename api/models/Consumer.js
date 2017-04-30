@@ -33,6 +33,9 @@ module.exports = {
       type: 'date',
       before: new Date(),
       required: true
+    },
+    primary_organization: {
+      model: 'organization'
     }
   }
 };

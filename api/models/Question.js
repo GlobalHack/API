@@ -14,6 +14,9 @@ module.exports = {
     help: {
       type: 'text'
     },
+    heading: {
+      type: 'text'
+    },
     type: {
       type: 'string',
       enum: ['string', 'number', 'boolean', 'date']
@@ -26,7 +29,8 @@ module.exports = {
       model: 'prefix'
     },
     widget: {
-      model: 'widget'
+      type: 'string',
+      enum: ['RefusableBoolean', 'RefusableSelect', 'RefusableNumber']
     },
     questionsets: {
       collection: 'questionset',
