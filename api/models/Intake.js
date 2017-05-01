@@ -16,6 +16,14 @@ module.exports = {
     complete: {
       type: 'boolean',
       defaultsTo: false
+    },
+    answers: {
+      type: 'json',
+      defaultsTo: '{}'
+    },
+    questionSet: {
+      model: 'questionset',
+      defaultsTo: '1'
     }
   }
 };

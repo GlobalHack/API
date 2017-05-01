@@ -31,8 +31,7 @@ module.exports = {
     },
     dateOfBirth: {
       type: 'date',
-      before: new Date(),
-      required: true
+      before: new Date()
     },
     primary_organization: {
       model: 'organization'
