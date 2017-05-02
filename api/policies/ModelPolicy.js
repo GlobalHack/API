@@ -13,6 +13,7 @@ function parseModel (req) {
  */
 module.exports = function ModelPolicy (req, res, next) {
   var modelCache = sails.hooks.permissions._modelCache;
+  
   req.options.modelIdentity = parseModel(req);
 
   if (_.isEmpty(req.options.modelIdentity)) {

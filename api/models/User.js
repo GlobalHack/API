@@ -14,7 +14,7 @@ module.exports = {
       collection: "Permission",
       via: "user"
     },
-    nickname: {
+    username: {
       type: 'string'
     },
     password: {
