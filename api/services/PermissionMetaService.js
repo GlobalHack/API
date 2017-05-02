@@ -1,4 +1,3 @@
-
 module.exports = {
 
   refreshPermissions: function(where){
@@ -8,21 +7,17 @@ module.exports = {
       .exec(function(err, metaObjects){
         if (err) return cb(err);
 
-        for ( var i = 0; i < metaObjects.length; i += 1) {
-          Role.getRoleForPermissionMeta({permissionMeta: metaObjects[i]})
-          .then(function(role){
+        metaObjects.forEach( function (meta) {
+          Role.getRoleForPermissionMeta({permissionMeta: meta}, function(err, role){
+            if (err) return err
+
             if (rolesCleared.indexOf(role.id) < 0 ){
               rolesCleared.push(role);
-              return Role.dropAllPermissions({role: role})
+              Role.dropAllPermissions({role: role}, sails.log)
             }
-          })
-          .then(function(){
-            return Permission.buildPermissionFromMeta(metaCriteria)
-          })
-          .catch(function(err){
-            sails.log.error(err);
+            return Permission.buildPermissionFromMeta({permissionMeta: meta}, sails.log)
           });
-        }
+        });
       });
     }
 }

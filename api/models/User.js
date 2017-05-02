@@ -37,8 +37,6 @@ module.exports = {
     /**
       @param
         user - id of user model to update
-        owner - id to set to owner of user ( defaults to using user id)
-
     **/
     User.update({ id: options.user }, { owner: options.user })
       .catch(function(e){
@@ -53,13 +51,22 @@ module.exports = {
         user - id of user model to update
 
     **/
+    options.role = 'registered'
+    return User.attachRole(options, cb)
+  },
+  attachRole: function( options, cb ) {
+    /**
+     @param
+      user - id of user model to update
+      role - name of role to attach
+    **/
     User.findOne(options.user).populate('roles')
     .exec( function(err, user){
       if( err || user == undefined ){
         return cb('error');
       }
 
-      Role.findOne({ name: 'registered'})
+      Role.findOne({ name: options.role})
       .exec(function(err, role){
         if( err || role == undefined){
           return cb('error');

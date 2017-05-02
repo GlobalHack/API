@@ -33,5 +33,6 @@ function installFixtures() {
 
 module.exports.bootstrap = function (cb) {
   // installFixtures();
+  sails.on('lifted', PermissionMetaService.refreshPermissions)
   cb();
 };

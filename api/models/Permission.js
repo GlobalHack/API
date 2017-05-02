@@ -133,7 +133,7 @@ module.exports = {
           blacklist: permissionMeta.blacklist ? permissionMeta.blacklist : []
         }
       }).then(function(){
-        sails.log("Created permission " + permissionMeta.action + "on " + permissionMeta.model + " for role " + permissionMeta.role);
+        sails.log("Created permission \'" + permissionMeta.action + "\' on " + permissionMeta.model + " for role " + permissionMeta.role);
         return cb();
       }).catch(function(err){
         return cb(err);

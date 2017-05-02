@@ -48,7 +48,7 @@ module.exports = {
 
     (function _lookupPermissionMetaIfNecessary(afterLookup){
       if ( typeof permissionMeta === 'object' ) return afterLookup(null, permissionMeta)
-      PermissionMeta.findOne(permissionMeta).exec(afterLookup);
+      return PermissionMeta.findOne(permissionMeta).exec(afterLookup);
     })(function(err, permissionMeta){
       if (err) return cb(err);
       if (!permissionMeta){

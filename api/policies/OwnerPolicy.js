@@ -5,8 +5,7 @@
  */
 module.exports = function OwnerPolicy (req, res, next) {
   //sails.log('OwnerPolicy()');
-  if (!req.user || !req.user.id) {
-    req.logout();
+  if (!req.user || !req.user.uid) {
     return res.send(500, new Error('req.user is not set'));
   }
 

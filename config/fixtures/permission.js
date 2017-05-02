@@ -20,15 +20,13 @@ var modelRestrictions = {
   registered: [
     'Role',
     'Permission',
-    'User',
-    'Passport'
+    'User'
   ],
   public: [
     'Role',
     'Permission',
     'User',
-    'Model',
-    'Passport'
+    'Model'
   ]
 };
 

@@ -82,8 +82,7 @@ module.exports = {
 
     //console.log('findModelPermissions options', options)
     //console.log('findModelPermissions action', action)
-
-    return User.findOne(options.user.id)
+    return User.findOne(options.user.uid)
       .populate('roles')
       .then(function(user) {
         var permissionCriteria = {
