@@ -21,6 +21,9 @@ module.exports = {
       type: 'string',
       enum: ['string', 'number', 'boolean', 'date']
     },
+    options: {
+      type: 'text'
+    },
     required: {
       type: 'boolean',
       default: false

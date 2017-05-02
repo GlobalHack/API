@@ -6,7 +6,8 @@ function getSchemaVals(entry) {
     'key'    : entry.key,
     'title'  : entry.title,
     'type'   : 'string',
-    'default': entry.default
+    'default': entry.default,
+    'options'   : entry.options
   };
 }
 

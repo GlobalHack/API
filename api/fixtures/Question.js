@@ -1,4 +1,4 @@
-var createQuestion = function (question, type, required, key, widget, help, heading) {
+var createQuestion = function (question, type, required, key, widget, help, heading, options) {
   return {
     title       : question,
     type        : type,
@@ -6,7 +6,8 @@ var createQuestion = function (question, type, required, key, widget, help, head
     key         : key,
     widget      : widget,
     help        : help,
-    heading     : heading
+    heading     : heading,
+    options     : options
   };
 };
 
@@ -29,7 +30,7 @@ var fixtures = [
   createQuestion('Do you have any legal stuff going on right now that may result in you being locked up or having to pay fines?', 'boolean', true, 'Risks_8', 'RefusableBoolean'),
   createQuestion('Does anybody force or trick you to do things that you do not want to do?', 'boolean', true, 'Risks_9', 'RefusableBoolean'),
   createQuestion('Ever do things that may be considered to be risky like exchange sex for money, run drugs for someone, have unprotected sex with someone that you don\'t really know, share a needle, or anything like that?', 'boolean', true, 'Risks_10', 'RefusableBoolean'),
-  createQuestion('I am going to read types of places people sleep. Please tell me which one that you sleep at most often.', 'string', true, 'Risks_11', 'RefusableSelect'),
+  createQuestion('I am going to read types of places people sleep. Please tell me which one that you sleep at most often.', 'string', true, 'Risks_11', 'RefusableSelect', null, null, 'Shelter|Street, Sidewalk or Doorway|Car, Van, or RV|Bus or Subway|Beach, Riverbed or Park'),
 
   //Socialization
   createQuestion('Is there anybody that thinks you owe them money?', 'boolean', true, 'Socialization_1', 'RefusableBoolean', null, 'Socialization'),
@@ -41,7 +42,7 @@ var fixtures = [
   createQuestion('Surveyor, do you detect signs of poor hygiene or daily living skills?', 'boolean', true, 'Socialization_7', 'RefusableBoolean', 'OBSERVATION ONLY - DO NOT ASK'),
 
   //Wellness
-  createQuestion('Where do you usually go for healthcare or when you\'re not feeling well?', 'string', true, 'Wellness_1', 'RefusableSelect', null, 'Wellness'),
+  createQuestion('Where do you usually go for healthcare or when you\'re not feeling well?', 'string', true, 'Wellness_1', 'RefusableSelect', null, 'Wellness', 'Hospital|Clinic|VA|Does not go for care'),
   createQuestion('Kidney disease/End stage Renal Disease or Dialysis', 'boolean', true, 'Wellness_2', 'RefusableBoolean', 'Do you have now, have you ever had, or has a healthcare provider ever told you that you have'),
   createQuestion('History of frostbite, Hypothermia, or Immersion Foot', 'boolean', true, 'Wellness_3', 'RefusableBoolean', 'Do you have now, have you ever had, or has a healthcare provider ever told you that you have'),
   createQuestion('Liver disease, Cirrhosis, or End-Stage Liver Disease', 'boolean', true, 'Wellness_4', 'RefusableBoolean', 'Do you have now, have you ever had, or has a healthcare provider ever told you that you have'),
