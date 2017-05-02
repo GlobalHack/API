@@ -20,6 +20,9 @@ module.exports = {
     },
     disabled: {
       type: 'boolean'
+    },
+    user: {
+      model: 'user'
     }
   }
 };
