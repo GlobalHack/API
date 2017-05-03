@@ -85,5 +85,43 @@ module.exports = {
         });
       });
     });
-  }
+  },
+  dropAllPermissions: function(options, cb){
+    /**
+    *@param id in which all permissions needs to be dropped
+    *@return
+    **/
+    const users = _.isArray(options.user) ? options.user : [options.user];
+
+    users.forEach(function(user){
+      (function _lookupRoleIfNecessary(afterLookup){
+        if ( typeof user == 'object' ) return afterLookup(null, user)
+        User.findOne(user).exec(afterLookup);
+      })(function(err, user){
+          if (err) return cb(err);
+          if(!user){
+            err = new Error();
+            err.message = require('util').format('There is no User objects found that you are referencing.')
+            err.status = 404;
+            return cb(err);
+          }
+
+          Permission.destroy({user: user.id}).exec(function(err, array){
+            if (err) {
+              return cb(err);
+            }
+
+            if (array) {
+              Criteria.destroy({permission: _.pluck(array, "id")}).exec(function(err, array){
+                if (err) {
+                  return cb(err);
+                }
+              });
+            }
+
+            return cb()
+          })
+        })
+      });
+    }
 }

@@ -2,22 +2,19 @@ module.exports = {
 
   refreshPermissions: function(where){
     var rolesCleared = []
+    var usersCleared = []
     const metaCriteria = where ? where : {}
     PermissionMeta.find(metaCriteria)
       .exec(function(err, metaObjects){
-        if (err) return cb(err);
+        if (err) return err
 
-        metaObjects.forEach( function (meta) {
-          Role.getRoleForPermissionMeta({permissionMeta: meta}, function(err, role){
-            if (err) return err
+        Permission.dropAllPermissions({}, function(err){
+          if (err) return err;
 
-            if (rolesCleared.indexOf(role.id) < 0 ){
-              rolesCleared.push(role);
-              Role.dropAllPermissions({role: role}, sails.log)
-            }
-            return Permission.buildPermissionFromMeta({permissionMeta: meta}, sails.log)
-          });
-        });
-      });
+          metaObjects.forEach( function (meta) {
+            Permission.buildPermissionFromMeta({permissionMeta: meta}, sails.log)
+          })
+        })
+      })
     }
 }

@@ -17,9 +17,9 @@ module.exports = {
    */
   hasForeignObjects: function(objects, user) {
     if (!_.isArray(objects)) {
-      return PermissionService.isForeignObject(user.id)(objects);
+      return PermissionService.isForeignObject(user.uid)(objects);
     }
-    return _.any(objects, PermissionService.isForeignObject(user.id));
+    return _.any(objects, PermissionService.isForeignObject(user.uid));
   },
 
   /**
@@ -273,7 +273,7 @@ module.exports = {
         name: permission.role
       }) : null;
       var findUser = permission.user ? User.findOne({
-        username: permission.user
+        id: permission.user
       }) : null;
       return Promise.all([findRole, findUser, Model.findOne({
           name: permission.model
@@ -371,7 +371,7 @@ module.exports = {
       name: options.role
     }) : null;
     var findUser = options.user ? User.findOne({
-      username: options.user
+      id: options.user
     }) : null;
     var ok = Promise.all([findRole, findUser, Model.findOne({
       name: options.model

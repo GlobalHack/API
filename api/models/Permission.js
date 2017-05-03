@@ -105,6 +105,57 @@ module.exports = {
       next();
     }
   ],
+  buildPermissionForRole: function(options, cb){
+    /*
+    @param:
+       options.role,
+       options.model,
+       options.action,
+       options.criteria,
+       options.blacklist,
+    */
+    PermissionService.grant({
+      relation: 'role',
+      role: options.role,
+      model: options.model,
+      action: options.action,
+      criteria: options.criteria,
+    }).then(function(){
+      sails.log("Created permission \'" + options.action + "\' on " + options.model + " for role " + options.role);
+      return cb();
+    }).catch(function(err){
+      return cb(err);
+    });
+  },
+  buildPermissionForUser: function(options, cb){
+    /*
+    @param:
+      options.user,
+      options.model,
+      options.action,
+      options.criteria,
+      options.blacklist,
+    */
+    User.find().then(function(users){
+        users.forEach(function(user){
+          PermissionService.grant({
+            relation: 'owner',
+            user: user.id,
+            model: options.model,
+            action: options.action,
+            criteria: options.criteria,
+          }).then(function(){
+            sails.log("Created permission \'" + options.action + "\' on " + options.model + " for user " + user.username);
+          }).catch(function(err){
+            return cb(err);
+          });
+        });
+
+        return cb();
+    }).catch(function(err){
+      return cb(err);
+    })
+  },
   buildPermissionFromMeta: function(options, cb){
     /**
     *@param permissionMeta object
@@ -124,7 +175,7 @@ module.exports = {
         return cb(err);
       }
 
-      PermissionService.grant({
+      data = {
         role: permissionMeta.role,
         model: permissionMeta.model,
         action: permissionMeta.action,
@@ -132,12 +183,43 @@ module.exports = {
           where: permissionMeta.criteria ? permissionMeta.criteria : {},
           blacklist: permissionMeta.blacklist ? permissionMeta.blacklist : []
         }
-      }).then(function(){
-        sails.log("Created permission \'" + permissionMeta.action + "\' on " + permissionMeta.model + " for role " + permissionMeta.role);
-        return cb();
-      }).catch(function(err){
-        return cb(err);
-      });
+      }
+
+      if (permissionMeta.role) {
+
+        data.relation = 'role'
+        data.role = permissionMeta.role
+        return Permission.buildPermissionForRole(data, cb)
+
+      } else {
+        // Allow users to perform action on objects they own.
+        data.relation = 'owner'
+        data.user = permissionMeta.user
+        return Permission.buildPermissionForUser(data, cb)
+
+      }
+
     });
+  },
+  dropAllPermissions: function(options, cb){
+    /**
+    * Destroys all permissions and related criteria
+    **/
+
+    Permission.destroy().exec(function(err, array){
+      if (err) {
+        return cb(err);
+      }
+
+      if (array) {
+        Criteria.destroy({permission: _.pluck(array, "id")}).exec(function(err, array){
+          if (err) {
+            return cb(err);
+          }
+        });
+      }
+
+      return cb()
+    })
   }
 };
