@@ -30,7 +30,7 @@ var fixtures = [
   createQuestion('Do you have any legal stuff going on right now that may result in you being locked up or having to pay fines?', 'boolean', true, 'Risks_8', 'RefusableBoolean'),
   createQuestion('Does anybody force or trick you to do things that you do not want to do?', 'boolean', true, 'Risks_9', 'RefusableBoolean'),
   createQuestion('Ever do things that may be considered to be risky like exchange sex for money, run drugs for someone, have unprotected sex with someone that you don\'t really know, share a needle, or anything like that?', 'boolean', true, 'Risks_10', 'RefusableBoolean'),
-  createQuestion('I am going to read types of places people sleep. Please tell me which one that you sleep at most often.', 'string', true, 'Risks_11', 'RefusableSelect', null, null, 'Shelter|Street, Sidewalk or Doorway|Car, Van, or RV|Bus or Subway|Beach, Riverbed or Park'),
+  createQuestion('Please tell me which you sleep at most often.', 'string', true, 'Risks_11', 'RefusableSelect', null, null, 'Shelter|Street, Sidewalk or Doorway|Car, Van, or RV|Bus or Subway|Beach, Riverbed or Park'),
 
   //Socialization
   createQuestion('Is there anybody that thinks you owe them money?', 'boolean', true, 'Socialization_1', 'RefusableBoolean', null, 'Socialization'),

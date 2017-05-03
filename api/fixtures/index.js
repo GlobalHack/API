@@ -7,6 +7,8 @@ var role = require('./Role');
 var consumer = require('./Consumer');
 var questionSet = require('./QuestionSet');
 var questionSetQuestion = require('./QuestionSetQuestion');
+var user = require('./User');
+var employee = require('./Employee');
 
 module.exports = {
 
@@ -43,6 +45,8 @@ module.exports = {
     this.installFixture(Consumer, 'Consumers', consumer.fixtures);
     this.installFixture(QuestionSet, 'Question Sets', questionSet.fixtures);
     this.installFixture(QuestionSetQuestion, 'Question Set Questions', questionSetQuestion.fixtures);
+    this.installFixture(User, 'Users', user.fixtures);
+    this.installFixture(Employee, 'Employees', employee.fixtures);
     this.createModels();
   }
 };

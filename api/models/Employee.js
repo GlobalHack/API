@@ -23,6 +23,9 @@ module.exports = {
     },
     user: {
       model: 'user'
+    },
+    role: {
+      type: 'string'
     }
   }
 };
