@@ -32,8 +32,6 @@ module.exports = function (req, res, next) {
   PermissionService
     .findModelPermissions(options)
     .then(function (permissions) {
-      sails.log.silly('PermissionPolicy:', permissions.length, 'permissions grant',
-          req.method, 'on', req.model.name, 'for', req.user.username);
 
       if (!permissions || permissions.length === 0) {
         return res.send(403, { error: PermissionService.getErrorMessage(options) });

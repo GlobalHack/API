@@ -31,6 +31,9 @@ module.exports = {
     },
     email: {
       type: 'string'
+    },
+    getName: function() {
+      return this.firstName + this.lastName
     }
   },
   setOwner: function ( options, cb ) {
