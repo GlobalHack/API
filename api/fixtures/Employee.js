@@ -9,7 +9,8 @@ fixtures.push({
   firstName: "Drew",
   lastName: "Winship",
   user: 1,
-  role: 'Admin'
+  role: 'Admin',
+  organization: 9
 });
 fixtures.push({
   id:2,
@@ -17,7 +18,8 @@ fixtures.push({
   firstName: "John",
   lastName: "True",
   user: 2,
-  role: 'User'
+  role: 'User',
+  organization: 9
 });
 fixtures.push({
   id:3,

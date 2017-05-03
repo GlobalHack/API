@@ -37,7 +37,7 @@ module.exports.policies = {
     // 'CriteriaPolicy'
   ],
 
-  UserController: ['UserPolicy'],
+  // UserController: ['UserPolicy'],
 
   SwaggerController: true,
 
