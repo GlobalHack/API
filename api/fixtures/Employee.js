@@ -4,12 +4,12 @@ var RandomSSN = require('ssn').RandomSSN;
 
 var fixtures = [];
 fixtures.push({
-  id:1,
-  email: "test@cemaritan.com",
-  firstName: "test",
-  lastName: "user",
+  id: 1,
+  email: "drew@globalhack.org",
+  firstName: "Drew",
+  lastName: "Winship",
   user: 1,
-  role: 'admin'
+  role: 'Admin'
 });
 fixtures.push({
   id:2,
@@ -17,7 +17,7 @@ fixtures.push({
   firstName: "John",
   lastName: "True",
   user: 2,
-  role: 'user'
+  role: 'User'
 });
 fixtures.push({
   id:3,
@@ -25,7 +25,7 @@ fixtures.push({
   firstName: "Charlotte",
   lastName: "Crocker",
   user: 3,
-  role: 'user'
+  role: 'User'
 });
 fixtures.push({
   id:4,
@@ -33,7 +33,7 @@ fixtures.push({
   firstName: "Duke",
   lastName: "Cross",
   user: 4,
-  role: 'admin'
+  role: 'Admin'
 });
 
 module.exports = {

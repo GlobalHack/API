@@ -6,11 +6,11 @@ var bcrypt    = require('bcryptjs');
 var fixtures = [];
 fixtures.push({
   id: 1,
-  nickname: "testuser",
-  email: "test@cemaritan.com",
+  nickname: "Drew Winship",
+  email: "drew@globalhack.org",
   password: bcrypt.hashSync("testing123testing", 10),
-  firstName: "test",
-  lastName: "user",
+  firstName: "Drew",
+  lastName: "Winship",
   employee: 1
 });
 fixtures.push({
