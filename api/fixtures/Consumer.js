@@ -15,7 +15,7 @@ var createConsumer = function () {
 };
 
 var fixtures = [];
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < 3; i++) {
   fixtures.push(createConsumer());
 }
 
