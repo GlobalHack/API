@@ -30,8 +30,7 @@ module.exports = {
       type: 'string'
     },
     dateOfBirth: {
-      type: 'date',
-      before: new Date()
+      type: 'string'
     },
     primary_organization: {
       model: 'organization'
