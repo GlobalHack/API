@@ -8,6 +8,6 @@ module.exports = {
     User.attachDefaultRole(options, function(err){
       if (err) return res.serverError()
     });
-    return res.ok()
+    return res.ok(200, options)
   },
 };
