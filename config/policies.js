@@ -37,6 +37,11 @@ module.exports.policies = {
     // 'CriteriaPolicy'
   ],
 
+  InviteController: [
+    'TokenPolicy',
+    'AuthPolicy',
+  ],
+
   // UserController: ['UserPolicy'],
 
   SwaggerController: true,
