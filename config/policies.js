@@ -42,10 +42,7 @@ module.exports.policies = {
     csv: true
   },
 
-  UserController: {
-    setOwner: 'Auth0TokenPolicy',
-    attachDefaultRole: 'Auth0TokenPolicy'
-  }
+  UserController: true
 
   /***************************************************************************
    *                                                                          *
