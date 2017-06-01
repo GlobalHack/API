@@ -17,9 +17,6 @@ describe('QuestionModel', function() {
           'required': false,
           'prefix': {
             'prefix': faker.fake("{{random.word}}")
-          },
-          'widget': {
-            'title': faker.fake("{{random.word}}")
           }
         })
         .then(function(results) {
@@ -85,9 +82,6 @@ describe('QuestionModel', function() {
     it('should clean up test dependencies', (done) => {
       Promise.all([
           Prefix.destroy({
-            'id': testObject.organization
-          }),
-          Widget.destroy({
             'id': testObject.organization
           })
         ]).then((results) => {
