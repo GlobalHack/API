@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "ejs": "2.3.4",
     "express-jwt": "^5.1.0",
     "fnv-plus": "^1.2.12",
@@ -21,17 +22,20 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
+    "json2csv": "^3.7.3",
+    "lodash.keyby": "^4.6.0",
     "nodemailer": "^3.1.8",
     "rc": "1.0.1",
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
     "sails-postgresql": "^0.11.4",
-    "sails-swagger": "^0.5.1"
+    "sails-swagger": "^0.5.1",
+    "ssn": "^1.0.3"
   },
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "test": "node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/unit/models/*.test.js test/unit/fixtures/*.test.js"
+    "test": "./node_modules/mocha/bin/mocha test/bootstrap.test.js test/unit/models/*.test.js test/unit/fixtures/*.test.js"
   },
   "main": "app.js",
   "repository": {
@@ -45,6 +49,7 @@
     "faker": "^4.1.0",
     "mocha": "^3.2.0",
     "supertest": "^3.0.0",
-    "swagger-ui": "^3.0.2"
+    "swagger-ui": "^3.0.2",
+    "uid": "0.0.2"
   }
 }

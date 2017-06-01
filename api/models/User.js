@@ -31,6 +31,12 @@ module.exports = {
     },
     email: {
       type: 'string'
+    },
+    employee: {
+      model: 'employee'
+    },
+    consumer: {
+      model: 'consumer'
     }
   },
 

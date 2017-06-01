@@ -3,6 +3,10 @@ module.exports = {
     schemaName: 'coordinated_entry_system'
   },
   attributes: {
+    key:{
+      type: 'text',
+      required: true
+    },
     title: {
       type: 'text',
       required: true
@@ -10,9 +14,15 @@ module.exports = {
     help: {
       type: 'text'
     },
+    heading: {
+      type: 'text'
+    },
     type: {
       type: 'string',
       enum: ['string', 'number', 'boolean', 'date']
+    },
+    options: {
+      type: 'text'
     },
     required: {
       type: 'boolean',
@@ -22,7 +32,8 @@ module.exports = {
       model: 'prefix'
     },
     widget: {
-      model: 'widget'
+      type: 'string',
+      enum: ['RefusableBoolean', 'RefusableSelect', 'RefusableNumber']
     },
     questionsets: {
       collection: 'questionset',

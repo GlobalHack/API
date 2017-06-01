@@ -10,15 +10,13 @@ describe('QuestionModel', function() {
     it('should check create function', function(done) {
       // Create a new resource
       Question.create({
+          'key': faker.fake("{{random.word}}"),
           'title': testTitle,
           'help': faker.fake("{{random.word}}"),
           'type': 'string',
           'required': false,
           'prefix': {
             'prefix': faker.fake("{{random.word}}")
-          },
-          'widget': {
-            'title': faker.fake("{{random.word}}")
           }
         })
         .then(function(results) {
@@ -84,9 +82,6 @@ describe('QuestionModel', function() {
     it('should clean up test dependencies', (done) => {
       Promise.all([
           Prefix.destroy({
-            'id': testObject.organization
-          }),
-          Widget.destroy({
             'id': testObject.organization
           })
         ]).then((results) => {

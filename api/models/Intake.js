@@ -12,6 +12,18 @@ module.exports = {
     score: {
       type: 'integer',
       defaultsTo: 0
+    },
+    complete: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    answers: {
+      type: 'json',
+      defaultsTo: '{}'
+    },
+    questionSet: {
+      model: 'questionset',
+      defaultsTo: '1'
     }
   }
 };
