@@ -9,3 +9,6 @@ env:
     - USER_API_SECRET=USER_API_SECRET
 notifications:
   slack: ghimplementationteam:P8HpTjSCo8cDGwahXPLgQh47
+cache:
+  directories:
+    - node_modules
