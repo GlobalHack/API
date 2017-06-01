@@ -25,9 +25,9 @@ module.exports = {
   createModels: function () {
     var models = _.compact(_.map(sails.models, function (model, name) {
       return model && model.globalId && model.identity && {
-          name      : model.globalId,
-          identity  : model.identity,
-          attributes: _.omit(model.attributes, _.functions(model.attributes))
+        name      : model.globalId,
+        identity  : model.identity,
+        attributes: _.omit(model.attributes, _.functions(model.attributes))
         };
     }));
 
