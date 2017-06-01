@@ -35,7 +35,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "test": "node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/unit/models/*.test.js test/unit/fixtures/*.test.js"
+    "test": "./node_modules/mocha/bin/mocha test/bootstrap.test.js test/unit/models/*.test.js test/unit/fixtures/*.test.js"
   },
   "main": "app.js",
   "repository": {
@@ -49,6 +49,7 @@
     "faker": "^4.1.0",
     "mocha": "^3.2.0",
     "supertest": "^3.0.0",
-    "swagger-ui": "^3.0.2"
+    "swagger-ui": "^3.0.2",
+    "uid": "0.0.2"
   }
 }
