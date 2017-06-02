@@ -32,6 +32,6 @@ deploy:
   deployment_group: CemaritanAPI
   on: *2
 before_deploy:
-- zip -r latest *
+- zip -q -r latest *
 - mkdir -p dpl_cd_upload
 - mv latest.zip dpl_cd_upload/latest.zip
