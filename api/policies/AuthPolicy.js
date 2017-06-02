@@ -10,7 +10,13 @@ module.exports = function(req, res, next) {
   if (!req.user || !req.user.uid) {
     return res.forbidden('You are not permitted to perform this action.');
   }
-  req.user.id = req.user.uid;
-  req.user.organization = req.user.org;
-  return next();
+  User.findOne({id:req.user.uid}).populate("employee")
+    .then(function(user){
+      req.user = user;
+      return Organization.findOne({id:user.employee.organization});
+    })
+    .then(function(organization){
+      req.user.organization = organization;
+      return next();
+    })
 };
