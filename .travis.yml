@@ -26,11 +26,12 @@ deploy:
   access_key_id: AKIAJOAQQIQOEZEO2SUQ
   secret_access_key: *1
   bucket: cemaritan-deployments
-  key: deployments
+  key: latest.zip
   bundle_type: zip
   application: API
   deployment_group: CemaritanAPI
   on: *2
 before_deploy:
+- zip -r latest *
 - mkdir -p dpl_cd_upload
-- mv \* dpl_cd_upload/deployments
+- mv latest.zip dpl_cd_upload/latest.zip
