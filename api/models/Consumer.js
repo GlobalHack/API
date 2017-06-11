@@ -7,7 +7,7 @@ module.exports = {
   attributes: {
     uuid: {
       type: 'string',
-      defaultsTo: function() {
+      defaultsTo: function () {
         return uuid.v4();
       },
       unique: true

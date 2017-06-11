@@ -10,10 +10,10 @@
  */
 var _ = require('lodash');
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
   var permissions = req.permissions;
-  var relations = _.groupBy(permissions, 'relation');
-  var action = PermissionService.getMethod(req.method);
+  var relations   = _.groupBy(permissions, 'relation');
+  var action      = PermissionService.getMethod(req.method);
 
   // continue if there exist role Permissions which grant the asserted privilege
   if (!_.isEmpty(relations.role)) {
@@ -33,17 +33,17 @@ module.exports = function(req, res, next) {
     // Some parsing must happen on the query down the line,
     // as req.query has no impact on the results from PermissionService.findTargetObjects.
     // I had to look at the actionUtil parseCriteria method to see where to augment the criteria
-    req.params.all().where = req.params.all().where || {};
+    req.params.all().where       = req.params.all().where || {};
     req.params.all().where.owner = req.user.id;
-    req.query.owner = req.user.id;
+    req.query.owner              = req.user.id;
     _.isObject(req.body) && (req.body.owner = req.user.id);
   }
 
   PermissionService.findTargetObjects(req)
-    .then(function(objects) {
-        // PermissionService.isAllowedToPerformAction checks if the user has 'user' based permissions (vs role or owner based permissions)
+    .then(function (objects) {
+      // PermissionService.isAllowedToPerformAction checks if the user has 'user' based permissions (vs role or owner based permissions)
       return PermissionService.isAllowedToPerformAction(objects, req.user, action, ModelService.getTargetModelName(req), req.body)
-        .then(function(hasUserPermissions) {
+        .then(function (hasUserPermissions) {
           if (hasUserPermissions) {
             return next();
           }

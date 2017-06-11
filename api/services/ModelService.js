@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var _         = require('lodash');
 var pluralize = require('pluralize');
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
     } else if (_.isString(req.options.model)) {
       return req.options.model;
     } else {
-        return req.model && req.model.identity;
+      return req.model && req.model.identity;
     }
   }
 };

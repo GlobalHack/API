@@ -7,6 +7,9 @@ env:
   - REACT_APP_AUTH0CLIENTID=REACT_APP_AUTH0CLIENTID
   - REACT_APP_AUTH0DOMAIN=REACT_APP_AUTH0DOMAIN
   - USER_API_SECRET=USER_API_SECRET
+script:
+- npm run lint
+- npm run test
 notifications:
   slack: ghimplementationteam:P8HpTjSCo8cDGwahXPLgQh47
 cache:
@@ -26,12 +29,12 @@ deploy:
   access_key_id: AKIAJOAQQIQOEZEO2SUQ
   secret_access_key: *1
   bucket: cemaritan-deployments
-  key: latest.zip
+  key: api_latest.zip
   bundle_type: zip
   application: API
   deployment_group: CemaritanAPI
   on: *2
 before_deploy:
-- zip -q -r latest *
+- zip -q -r api_latest *
 - mkdir -p dpl_cd_upload
-- mv latest.zip dpl_cd_upload/latest.zip
+- mv api_latest.zip dpl_cd_upload/api_latest.zip

@@ -16,10 +16,6 @@ module.exports = {
 
   description: 'Specifies more granular limits on a permission',
 
-  meta: {
-    schemaName: 'coordinated_entry_system'
-  },
-
   attributes: {
     where: 'json',
     blacklist: 'array',

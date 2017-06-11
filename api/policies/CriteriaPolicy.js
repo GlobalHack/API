@@ -5,9 +5,9 @@
  * Verify that the User fulfills permission 'where' conditions and attribute blacklist restrictions
  */
 var wlFilter = require('waterline-criteria');
-var _ = require('lodash');
+var _        = require('lodash');
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
   var permissions = req.permissions;
 
   if (_.isEmpty(permissions)) {
@@ -28,7 +28,6 @@ module.exports = function(req, res, next) {
     return next();
   }
 
-
   // set up response filters if we are not mutating an existing object
   if (!_.contains(['update', 'delete'], action)) {
 
@@ -37,7 +36,7 @@ module.exports = function(req, res, next) {
     var criteria = _.compact(_.flatten(
       _.map(
         _.pluck(permissions, 'criteria'),
-        function(c) {
+        function (c) {
           if (c.length == 0) {
             return [{where: {}}];
           }
@@ -53,7 +52,7 @@ module.exports = function(req, res, next) {
   }
 
   PermissionService.findTargetObjects(req)
-    .then(function(objects) {
+    .then(function (objects) {
 
       // attributes are not important for a delete request
       if (action === 'delete') {
@@ -81,19 +80,19 @@ function bindResponsePolicy(req, res, criteria) {
 }
 
 function responsePolicy(criteria, _data, options) {
-  var req = this.req;
-  var res = this.res;
-  var user = req.owner;
-  var method = PermissionService.getMethod(req);
+  // var req = this.req;
+  var res             = this.res;
   var isResponseArray = _.isArray(_data);
 
   var data = isResponseArray ? _data : [_data];
 
   // remove undefined, since that is invalid input for waterline-criteria
-  data = data.filter(item => { return item !== undefined })
+  data = data.filter(function (item) {
+    return item !== undefined;
+  });
 
-  var permitted = data.reduce(function(memo, item) {
-    criteria.some(function(crit) {
+  var permitted = data.reduce(function (memo, item) {
+    criteria.some(function (crit) {
       var filtered = wlFilter([item], {
         where: {
           or: [crit.where || {}]

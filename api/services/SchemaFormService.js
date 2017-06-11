@@ -1,22 +1,22 @@
-var _ = require('lodash');
+var _     = require('lodash');
 var keyBy = require('lodash.keyby');
 
 function getSchemaVals(entry) {
   return {
-    'key'    : entry.key,
-    'title'  : entry.title,
-    'type'   : 'string',
+    'key': entry.key,
+    'title': entry.title,
+    'type': 'string',
     'default': entry.default,
-    'options'   : entry.options
+    'options': entry.options
   };
 }
 
 function getFormVals(entry) {
   return {
-    'key'        : entry.key,
-    'type'       : entry.widget,
-    'help'       : entry.help,
-    'heading'    : entry.heading,
+    'key': entry.key,
+    'type': entry.widget,
+    'help': entry.help,
+    'heading': entry.heading,
     'placeholder': entry.help || ''
   };
 }
@@ -34,10 +34,10 @@ module.exports = {
   getSchemaForm: function (fields) {
     return {
       'schema': {
-        type      : 'object',
+        type: 'object',
         properties: module.exports.getSchema(fields)
       },
-      'form'  : module.exports.getForm(fields)
+      'form': module.exports.getForm(fields)
     };
   }
 

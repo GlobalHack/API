@@ -1,20 +1,21 @@
-var _ = require('lodash');
-var question = require('./Question');
-var organization = require('./Organization');
-var prefix = require('./Prefix');
-var menuitem = require('./MenuItem');
-var role = require('./Role');
-var consumer = require('./Consumer');
-var questionSet = require('./QuestionSet');
+var _                   = require('lodash');
+var question            = require('./Question');
+var organization        = require('./Organization');
+var prefix              = require('./Prefix');
+var menuitem            = require('./MenuItem');
+var role                = require('./Role');
+var consumer            = require('./Consumer');
+var questionSet         = require('./QuestionSet');
 var questionSetQuestion = require('./QuestionSetQuestion');
-var user = require('./User');
-var employee = require('./Employee');
+var user                = require('./User');
+var employee            = require('./Employee');
 
 module.exports = {
 
   installFixture: function (model, name, fixtures) {
     model.findOrCreateEach(fixtures, fixtures).exec(function (err, results) {
       if (err) {
+        sails.log.debug(results);
         sails.log.debug(err);
       } else {
         sails.log.debug(name + ' installed');
@@ -24,11 +25,12 @@ module.exports = {
 
   createModels: function () {
     var models = _.compact(_.map(sails.models, function (model, name) {
+      console.log(name);
       return model && model.globalId && model.identity && {
-        name      : model.globalId,
-        identity  : model.identity,
+        name: model.globalId,
+        identity: model.identity,
         attributes: _.omit(model.attributes, _.functions(model.attributes))
-        };
+      };
     }));
 
     _.map(models, function (model) {

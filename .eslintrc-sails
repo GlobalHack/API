@@ -1,0 +1,23 @@
+{
+  "globals": {
+    "sails": true,
+    "UserController": true,
+    "User": true,
+    "Answer": true,
+    "Intake": true,
+    "PermissionService": true,
+    "Permission": true,
+    "Model": true,
+    "Role": true,
+    "ModelService": true,
+    "Question": true,
+    "Organization": true,
+    "Consumer": true,
+    "Employee": true,
+    "QuestionSet": true,
+    "QuestionSetQuestion": true,
+    "EmailService": true,
+    "Prefix": true,
+    "MenuItem": true
+  }
+}

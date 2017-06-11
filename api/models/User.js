@@ -1,5 +1,3 @@
-var _ = require('lodash');
-
 module.exports = {
   meta: {
     schemaName: 'coordinated_entry_system'
@@ -11,8 +9,8 @@ module.exports = {
       dominant: true
     },
     permissions: {
-      collection: "Permission",
-      via: "user"
+      collection: 'Permission',
+      via: 'user'
     },
     nickname: {
       type: 'string'
@@ -44,11 +42,11 @@ module.exports = {
    * Attach default Role to a new User
    */
   afterCreate: [
-    function setOwner (user, next) {
+    function setOwner(user, next) {
       sails.log.verbose('User.afterCreate.setOwner', user);
       User
-        .update({ id: user.id }, { owner: user.id })
-        .then(function (user) {
+        .update({id: user.id}, {owner: user.id})
+        .then(function () {
           next();
         })
         .catch(function (e) {
@@ -56,26 +54,26 @@ module.exports = {
           next(e);
         });
     },
-    function attachDefaultRole (user, next) {
+    function attachDefaultRole(user, next) {
       sails.log('User.afterCreate.attachDefaultRole', user);
       User.findOne(user.id)
         .populate('roles')
         .then(function (_user) {
           user = _user;
-          return Role.findOne({ name: 'registered' });
+          return Role.findOne({name: 'registered'});
         })
         .then(function (role) {
           user.roles.add(role.id);
           return user.save();
         })
-        .then(function (updatedUser) {
+        .then(function () {
           sails.log.silly('role "registered" attached to user', user.username);
           next();
         })
         .catch(function (e) {
           sails.log.error(e);
           next(e);
-        })
+        });
     }
   ]
 };

@@ -4,7 +4,7 @@
  * @description
  *   The actions a Role is granted on a particular Model and its attributes
  */
-var _ = require('lodash');
+var _          = require('lodash');
 module.exports = {
   meta: {
     schemaName: 'coordinated_entry_system'
@@ -84,21 +84,23 @@ module.exports = {
   },
 
   afterValidate: [
-    function validateOwnerCreateTautology (permission, next) {
+    function validateOwnerCreateTautology(permission, next) {
       if (permission.relation == 'owner' && permission.action == 'create') {
         next(new Error('Creating a Permission with relation=owner and action=create is tautological'));
       }
 
       if (permission.action === 'delete' &&
-              _.filter(permission.criteria, function (criteria) { return !_.isEmpty(criteria.blacklist); }).length) {
+        _.filter(permission.criteria, function (criteria) {
+          return !_.isEmpty(criteria.blacklist);
+        }).length) {
         next(new Error('Creating a Permission with an attribute blacklist is not allowed when action=delete'));
       }
 
-      if (permission.relation == 'user' && permission.user === "") {
+      if (permission.relation == 'user' && permission.user === '') {
         next(new Error('A Permission with relation user MUST have the user attribute set'));
       }
 
-      if (permission.relation == 'role' && permission.role === "") {
+      if (permission.relation == 'role' && permission.role === '') {
         next(new Error('A Permission with relation role MUST have the role attribute set'));
       }
 

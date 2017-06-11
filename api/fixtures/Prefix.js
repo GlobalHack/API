@@ -1,4 +1,4 @@
-var createPrefix = function (prefix, key) {
+var createPrefix = function (prefix) {
   return {
     prefix: prefix
   };

@@ -1,6 +1,6 @@
 var fixtures = [
-  { name: 'admin' },
-  { name: 'registered' }
+  {name: 'admin'},
+  {name: 'registered'}
 ];
 
 module.exports = {

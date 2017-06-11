@@ -1,5 +1,5 @@
 var fnv = require('fnv-plus');
-var _ = require('lodash');
+var _   = require('lodash');
 var url = require('url');
 
 module.exports = function (req, res, next) {
@@ -20,7 +20,7 @@ module.exports = function (req, res, next) {
   next();
 };
 
-function sanitizeRequestUrl (req) {
+function sanitizeRequestUrl(req) {
   var requestUrl = url.format({
     protocol: req.protocol,
     host: req.host || sails.getHost(),

@@ -1,9 +1,9 @@
 /**
-* RequestLog.js
-*
-* @description :: Stores api requests
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * RequestLog.js
+ *
+ * @description :: Stores api requests
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
   meta: {

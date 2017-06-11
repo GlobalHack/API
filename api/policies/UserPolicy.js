@@ -8,11 +8,11 @@
  * @see         http://github.com/auth0/express-jwt
  *
  */
-var jwt = require('express-jwt');
+var jwt        = require('express-jwt');
 module.exports = jwt(
   {
     secret: process.env.USER_API_SECRET,
     audience: process.env.REACT_APP_AUTH0CLIENTID,
-    issuer: 'https://'+process.env.REACT_APP_AUTH0DOMAIN+'/'
+    issuer: 'https://' + process.env.REACT_APP_AUTH0DOMAIN + '/'
   }
 );

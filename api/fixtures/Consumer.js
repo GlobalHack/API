@@ -1,5 +1,5 @@
-var uuid = require('uuid');
-var faker = require('faker');
+var uuid      = require('uuid');
+var faker     = require('faker');
 var RandomSSN = require('ssn').RandomSSN;
 
 var createConsumer = function () {
@@ -11,7 +11,7 @@ var createConsumer = function () {
     domesticViolence: faker.random.number(1),
     youth: faker.random.number(1),
     dateOfBirth: faker.date.past()
-  }
+  };
 };
 
 var fixtures = [];

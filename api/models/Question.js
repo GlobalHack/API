@@ -3,7 +3,7 @@ module.exports = {
     schemaName: 'coordinated_entry_system'
   },
   attributes: {
-    key:{
+    key: {
       type: 'text',
       required: true
     },

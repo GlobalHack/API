@@ -1,9 +1,9 @@
 /**
-* SecurityLog.js
-*
-* @description :: Stores reference to Request Log
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * SecurityLog.js
+ *
+ * @description :: Stores reference to Request Log
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
   meta: {

@@ -1,13 +1,13 @@
 var createQuestion = function (question, type, required, key, widget, help, heading, options) {
   return {
-    title       : question,
-    type        : type,
-    required    : required,
-    key         : key,
-    widget      : widget,
-    help        : help,
-    heading     : heading,
-    options     : options
+    title: question,
+    type: type,
+    required: required,
+    key: key,
+    widget: widget,
+    help: help,
+    heading: heading,
+    options: options
   };
 };
 
