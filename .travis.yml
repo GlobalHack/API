@@ -1,15 +1,12 @@
 language: node_js
 node_js:
 - '6'
-env:
-  global:
-  - AUTH0SECRET=AUTH0SECRET
-  - REACT_APP_AUTH0CLIENTID=REACT_APP_AUTH0CLIENTID
-  - REACT_APP_AUTH0DOMAIN=REACT_APP_AUTH0DOMAIN
-  - USER_API_SECRET=USER_API_SECRET
 script:
 - npm run lint
 - npm run test
+- zip -q -r api_latest *
+- mkdir -p dpl_cd_upload
+- mv api_latest.zip dpl_cd_upload/api_latest.zip
 notifications:
   slack: ghimplementationteam:P8HpTjSCo8cDGwahXPLgQh47
 cache:
@@ -34,7 +31,3 @@ deploy:
   application: API
   deployment_group: CemaritanAPI
   on: *2
-before_deploy:
-- zip -q -r api_latest *
-- mkdir -p dpl_cd_upload
-- mv api_latest.zip dpl_cd_upload/api_latest.zip

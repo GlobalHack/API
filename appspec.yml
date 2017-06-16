@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/API
+hooks:
+  - ApplicationStop:
+    - location: ApplicationStop.sh
+  - ApplicationStart:
+    - location: ApplicationStart.sh
