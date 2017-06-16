@@ -4,7 +4,7 @@ files:
   - source: /
     destination: /home/ubuntu/API
 hooks:
-  - ApplicationStop:
+  ApplicationStop:
     - location: ApplicationStop.sh
-  - ApplicationStart:
+  ApplicationStart:
     - location: ApplicationStart.sh
