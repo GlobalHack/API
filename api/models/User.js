@@ -33,7 +33,13 @@ module.exports = {
       type: 'string'
     },
     getName: function() {
-      return this.firstName + this.lastName
+      return this.firstName + this.lastName;
+    },
+    employee: {
+      model: 'employee'
+    },
+    consumer: {
+      model: 'consumer'
     }
   },
   setDefaults: function ( options, cb ) {

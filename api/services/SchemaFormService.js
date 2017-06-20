@@ -1,24 +1,30 @@
 var _ = require('lodash');
+var keyBy = require('lodash.keyby');
 
 function getSchemaVals(entry) {
   return {
+    'key'    : entry.key,
     'title'  : entry.title,
-    'type'   : entry.type,
-    'default': entry.default
+    'type'   : 'string',
+    'default': entry.default,
+    'options'   : entry.options
   };
 }
 
 function getFormVals(entry) {
   return {
-    'placeholder': entry.help,
-    'type'       : entry.widget
+    'key'        : entry.key,
+    'type'       : entry.widget,
+    'help'       : entry.help,
+    'heading'    : entry.heading,
+    'placeholder': entry.help || ''
   };
 }
 
 module.exports = {
 
   getSchema: function (fields) {
-    return _.map(fields, getSchemaVals);
+    return keyBy(_.map(fields, getSchemaVals), 'key');
   },
 
   getForm: function (fields) {
@@ -27,7 +33,10 @@ module.exports = {
 
   getSchemaForm: function (fields) {
     return {
-      'schema': module.exports.getSchema(fields),
+      'schema': {
+        type      : 'object',
+        properties: module.exports.getSchema(fields)
+      },
       'form'  : module.exports.getForm(fields)
     };
   }

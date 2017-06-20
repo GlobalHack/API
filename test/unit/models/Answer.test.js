@@ -19,6 +19,7 @@ describe('AnswerModel', function() {
             'score': 1
           },
           'question': {
+            'key': 'General.1',
             'title': 'How long have you been homeless?',
             'help': 'In years',
             'type': 'string',

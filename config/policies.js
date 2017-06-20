@@ -26,15 +26,12 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  '*': [
-        'TokenPolicy',
-        'ModelPolicy',
-        'AuditPolicy',
-        'OwnerPolicy',
-        'PermissionPolicy',
-        'RolePolicy',
-        'CriteriaPolicy'
-      ],
+  '*': [],
+
+  InviteController: [
+    'TokenPolicy',
+    'AuthPolicy',
+  ],
 
   SwaggerController: true,
 

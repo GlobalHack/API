@@ -15,7 +15,7 @@ var mailOptions = {
   from   : '"Cemaritan" <invite@cemaritan.com>', // sender address
   subject: 'Cemaritan Invite', // Subject line
   text   : 'You\'re invited to Cemaritan! https://app.cemaritan.com/', // plaintext body
-  html   : 'You\'re invited to <a href="https://app.cemaritan.com/">Cemaritan!</a>' // html body
+  html   : '[UserName] has invited you to join the [OrganizationName] account on Cemaritan created by GlobalHack. <a href="https://app.cemaritan.com/">Click Here</a> to create a user profile and join the account. If you any questions please do not hesitate to contact us at, help@globalhack.org.<br/><br/>Sincerely<br/>The Cemaritan Team' // html body
 };
 
 /// Example callback for sendInvite
@@ -28,8 +28,9 @@ var mailOptions = {
 //   return {error: error, info: info};
 // }
 
-module.exports.sendInvite = function (invite_email, cb) {
+module.exports.sendInvite = function (invite_email, user, cb) {
   // send mail with defined transport object
   mailOptions.to = invite_email;
+  mailOptions.html = mailOptions.html.replace("[UserName]",user.nickname).replace("[OrganizationName]",user.organization.name)
   transporter.sendMail(mailOptions, cb);
 };
